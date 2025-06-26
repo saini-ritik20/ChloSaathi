@@ -4,65 +4,111 @@ import AboutUs from "./AboutUs.jsx";
 import ContactUs from "./Contact.jsx";
 import ServiceU from './Service.jsx';
 import logo from "../assets/logo.png";
+import car from "../assets/car.png";
+import { motion } from 'framer-motion';
 
 const Home = () => {
   return (
     <div>
           {/* Nav Bar is Started Here  */}
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/> 
+                    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            />
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light border rounded mt-3 mx-3">
-        <div class="container-fluid">
-            <a href="Home.jsx"><img src={logo}  width={60} height={60} alt="logo" /></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarScroll">
-            <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll">
-                {/* <li class="nav-item me-4">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-                </li> */}
-                <li class="nav-item me-6">
-                <a class="nav-link" href="ServiceU">Service</a>
-                </li>
-                <li class="nav-item me-8">
-                <a class="nav-link" href="AboutUs">About Us</a>
-                </li>
-                {/* <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Link
+            <nav className="navbar navbar-expand navbar-light border rounded-5 mx-3 mt-3 shadow-lg">
+            <div className="container-fluid">
+                <a href="Home.jsx" className="navbar-brand d-flex align-items-center">
+                <img src={logo} width={40} height={40} alt="Taxi Logo" className="me-2" />
+                <span className="fw-bold fs-4 text-warning">RideNow</span>
                 </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                    <li><hr class="dropdown-divider" /></li>
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                <button
+                className="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarScroll"
+                aria-controls="navbarScroll"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+                >
+                <span className="navbar-toggler-icon"></span>
+                </button>
+
+                <div className="collapse navbar-collapse" id="navbarScroll">
+                <ul className="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll">
+                    {/* <li className="nav-item me-4">
+                    <a className="nav-link active text-warning" aria-current="page" href="Home">Home</a>
+                    </li> */}
+                    <li className="nav-item me-4">
+                    <a className="nav-link text-dark" href="BookRide">Book a Ride</a>
+                    </li>
+                    <li className="nav-item me-4">
+                    <a className="nav-link text-dark" href="ServiceU">Service</a>
+                    </li>
+                    <li className="nav-item me-4">
+                    <a className="nav-link text-dark" href="AboutUs">About Us</a>
+                    </li>
+                    <li className="nav-item me-4">
+                    <a className="nav-link text-dark" href="ContactUs">Contact</a>
+                    </li>
                 </ul>
-                </li> */}
-                <li class="nav-item me-8">
-                <a class="nav-link " href="ContactUs" tabindex="-1" aria-disabled="true">Contact Us</a>
-                </li>
-            </ul>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+                <form className="d-flex" role="search">
+                    <input
+                    className="form-control me-2  text-light border-warning"
+                    type="search"
+                    placeholder="Search"
+                    aria-label="Search"
+                    />
+                    <button className="btn btn-warning rounded-full me-5" type="submit">Search</button>
+                </form>
+                </div>
             </div>
-        </div>
-        </nav>
-
-
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> 
+            </nav>
+ 
         {/* Nav Bar is Ended Here  */}
 
         {/* Starting of the Home Page  */}
 
         <div className='me-4 p-5'>
-            <h1>Welcome in ChaloSathi!!!!!</h1>
-            <h2>It is Very Useful for making the Ride best .</h2>
+            
+            {/* <button  type="button" class="btn btn-outline-warning">Come with us</button> */}
+                        
+
+                <div className="text-center mt-15 ">
+                <motion.h1
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    className="text-warning display-4 fw-bold w-2 h-2"
+                >
+                    <img src={car} alt="car" />
+                </motion.h1>
+
+                {/* <motion.h2
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.3 }}
+                    className="text-dark fs-3"
+                >
+                    It is Very Useful for making the Ride best.
+                </motion.h2> */}
+
+                <motion.button
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.6 }}
+                    className="btn btn-outline-warning btn-lg px-5 py-3 fw-bold rounded-pill shadow-lg mt-3"
+                >
+                    Ride Now 😊
+                </motion.button>
+                </div>
+
         </div>
+        
     </div>
+    
   );
 };
+
 
 export default Home;
