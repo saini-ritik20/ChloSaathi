@@ -5,6 +5,10 @@ import ContactUs from "./Contact.jsx";
 import ServiceU from './Service.jsx';
 import logo from "../assets/logo.png";
 import car from "../assets/car.png";
+import part1 from "../assets/part1.jpg";
+import part11 from "../assets/part11.png";
+
+
 import { motion } from 'framer-motion';
 
 const Home = () => {
@@ -16,7 +20,7 @@ const Home = () => {
             rel="stylesheet"
             />
 
-            <nav className="navbar navbar-expand navbar-light border rounded-5 mx-3 mt-3 shadow-lg">
+            <nav className="navbar navbar-expand-lg center navbar-light border rounded-5 mx-3 mt-3 shadow-lg">
             <div className="container-fluid">
                 <a href="Home.jsx" className="navbar-brand d-flex align-items-center">
                 <img src={logo} width={40} height={40} alt="Taxi Logo" className="me-2" />
@@ -52,7 +56,23 @@ const Home = () => {
                     <a className="nav-link text-dark" href="ContactUs">Contact</a>
                     </li>
                 </ul>
-                <form className="d-flex" role="search">
+                {/* <button
+                    type="submit"
+                    className="relative inline-flex items-center justify-center gap-2 px-6 py-2 me-3 text-sm font-semibold text-black bg-gradient-to-r from-yellow-300 via-yellow-400 to-yellow-500 rounded-full shadow-md transition-all duration-500 ease-in-out transform hover:scale-105 hover:shadow-xl hover:bg-gradient-to-r hover:from-yellow-400 hover:via-yellow-500 hover:to-yellow-600 active:scale-95 focus:outline-none overflow-hidden group"
+                    >
+                    <span className="absolute inset-0 rounded-full bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-500"></span>
+                    <span className="z-10">🚕 Login</span>
+                    <span className="absolute -inset-0.5 rounded-full bg-yellow-300 blur-lg opacity-0 group-hover:opacity-40 transition-all duration-500"></span>
+                    </button> */}
+
+                <button className="btn btn-outline-warning me-5" type="submit">Login</button>
+
+
+
+
+
+
+                {/* <form className="d-flex" role="search">
                     <input
                     className="form-control me-2  text-light border-warning"
                     type="search"
@@ -60,7 +80,7 @@ const Home = () => {
                     aria-label="Search"
                     />
                     <button className="btn btn-warning rounded-full me-5" type="submit">Search</button>
-                </form>
+                </form> */}
                 </div>
             </div>
             </nav>
@@ -84,14 +104,14 @@ const Home = () => {
                     <img src={car} alt="car" />
                 </motion.h1>
 
-                {/* <motion.h2
+                <motion.h2
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.3 }}
-                    className="text-dark fs-3"
+                    className="text-warning display-4  fw-bold w-2 h-2"
                 >
-                    It is Very Useful for making the Ride best.
-                </motion.h2> */}
+                    Chalo Saathi
+                </motion.h2>
 
                 <motion.button
                     initial={{ opacity: 0, y: 30 }}
@@ -102,11 +122,98 @@ const Home = () => {
                     Ride Now 😊
                 </motion.button>
                 </div>
+                <br />
+                <br />
+                <br />
+
+                {/* 🖼 Left Side - Image */}
+                <motion.div
+                    initial={{ opacity: 0, x: -80 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 1.2 }}
+                    className="flex-shrink-0"
+                >
+                    <img 
+                    src={part11}
+                    alt="Taxi Ride"
+                    className="w-[320px] md:w-[400px] lg:w-[480px] h-auto rounded-3xl shadow-xl border-4 border-yellow-400"
+                    />
+                </motion.div>
+
+                <br />
+                <br />
+                <br />
+                <br />
+
+                {/* ✅ Right Side: Text & Button Animation */}
+                    <motion.div
+                        initial={{ opacity: 0, x: 80 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 1.2, ease: "easeOut", delay: 0.4 }}
+                        className="max-w-xl text-center lg:text-left"
+                    >
+                        <h1 className="text-4xl lg:text-5xl font-bold text-gray-800 mb-4 leading-snug">
+                        <span className="text-yellow-500">"Your Ride,</span> Your Time,<br />Your Way."
+                        </h1>
+                        <p className="text-gray-600 text-lg lg:text-xl mb-6">
+                        At RideNow, we believe that every ride should start at the right place and head in the right direction — with zero confusion. That’s why our platform uses advanced GPS technology to detect your exact pickup location, even in busy streets or remote corners. With real-time tracking, you'll always know where your driver is and when they’ll arrive. From live route updates to clear driver details, RideNow offers a transparent and stress-free travel experience from the moment you book. Enjoy every ride with confidence, knowing you’re always in the right place at the right time. <span className="font-semibold text-yellow-500">RideNow</span> – your trusted travel companion.
+                        </p>
+
+                        {/* <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        transition={{ type: "spring", stiffness: 300 }}
+                        className="px-6 py-3 bg-yellow-400 hover:bg-yellow-500 text-black font-semibold rounded-full shadow-lg transition-all duration-300"
+                        >
+                        🚕 Book a Ride Now
+                        </motion.button> */}
+                    </motion.div>
+
+                {/* {/* <div className="flex flex-col-reverse lg:flex-row items-center justify-center px-8 py-16 bg-gray-50 gap-12 overflow-hidden"> */}
+
+                <br />
+                <br />
+                <br />
+                <br />
+                    {/* 🖼 Right Side - Image */}
+                <div className="flex flex-col lg:flex-row-reverse items-center justify-center px-8 py-16 bg-gray-50 gap-12 overflow-hidden">
+
+                {/* 📝 Right Side - Text */}
+                <motion.div
+                    initial={{ opacity: 0, x: 80 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 1 }}
+                    className="max-w-xl text-center lg:text-left"
+                >
+                    <h2 className="text-4xl font-extrabold text-gray-900 mb-4 leading-tight">
+                    Get Quick Rides,<br />
+                    <span className="text-yellow-500 border-b-4 border-yellow-400 inline-block mt-2">Low Fares</span>
+                    </h2>
+                    <p className="text-lg text-gray-700 mb-6">
+                    In <span className="font-semibold text-yellow-600">RideNow</span>, we ensure our customers get rides quickly at the most affordable prices. Book your next trip instantly with trusted drivers, live tracking, and secure payments.
+                    </p>
+                    <motion.button
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.6 }}
+                    className="btn btn-outline-warning btn-lg px-5 py-3 fw-bold rounded-pill shadow-lg mt-3"
+                >
+                    contact Us
+                </motion.button>
+                </motion.div>
+
+                
+                </div> 
+        
+
+                    <br />
+                    <br />
+                    <br />
+                    
+            </div>
 
         </div>
-        
-    </div>
-    
+
   );
 };
 
