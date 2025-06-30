@@ -7,6 +7,8 @@ import logo from "../assets/logo.png";
 import car from "../assets/car.png";
 import part1 from "../assets/part1.jpg";
 import part11 from "../assets/part11.png";
+import bg1 from "../assets/bg1.jpg";
+
 
 
 import { motion } from 'framer-motion';
@@ -126,19 +128,44 @@ const Home = () => {
                 <br />
                 <br />
 
-                {/* 🖼 Left Side - Image */}
-                <motion.div
-                    initial={{ opacity: 0, x: -80 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 1.2 }}
-                    className="flex-shrink-0"
+                {/* 🖼 Left Side - Image */} 
+                
+                 <div className="relative flex items-center justify-center w-[240px] md:w-[300px] lg:w-[360px] h-auto mx-auto group">
+                {/* 🌈 Smaller Gradient Blob Background */}
+                <div className="absolute inset-0 blur-xl opacity-50 bg-gradient-to-br from-yellow-300 via-yellow-400 to-yellow-500 rounded-full scale-110 z-0 group-hover:scale-[1.2] transition-transform duration-700 ease-in-out"></div>
+
+                {/* 🖼 SVG with Clipped Image - Smaller Blob */}
+                <svg
+                    viewBox="0 0 200 200"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="relative w-full h-auto z-10 drop-shadow-2xl transition-all duration-700 ease-in-out group-hover:scale-105"
+                    preserveAspectRatio="xMidYMid meet"
                 >
-                    <img 
-                    src={part11}
-                    alt="Taxi Ride"
-                    className="w-[320px] md:w-[400px] lg:w-[480px] h-auto rounded-3xl shadow-xl border-4 border-yellow-400"
+                    <defs>
+                    <clipPath id="blobClip">
+                        <path
+                        d="M43.3,-60.1C57.4,-54.6,71.2,-43.3,75.6,-29.4C80,-15.5,75.1,1,67.2,15.7C59.3,30.5,48.5,43.5,35.4,53.6C22.3,63.6,11.2,70.7,-0.9,71.9C-13,73,-26.1,68.2,-38.3,60.4C-50.6,52.6,-61.9,41.8,-65.2,29.1C-68.5,16.4,-63.7,1.8,-59.2,-13.5C-54.7,-28.7,-50.5,-44.6,-40.4,-51.6C-30.3,-58.6,-15.1,-56.7,-0.6,-55.9C13.9,-55.2,27.8,-55.6,43.3,-60.1Z"
+                        transform="translate(100 100) scale(0.75)"  // Shrinking the shape
+                        />
+                    </clipPath>
+                    </defs>
+
+                    {/* 🖼 Clipped Image Inside Smaller Blob */}
+                    <image
+                    href={bg1}
+                    width="100%"
+                    height="100%"
+                    preserveAspectRatio="xMidYMid slice"
+                    clipPath="url(#blobClip)"
                     />
-                </motion.div>
+                </svg>
+                </div>
+
+
+
+
+
+
 
                 <br />
                 <br />
