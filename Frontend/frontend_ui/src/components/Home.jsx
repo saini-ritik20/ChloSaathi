@@ -6,8 +6,11 @@ import ServiceU from './Service.jsx';
 import logo from "../assets/logo.png";
 import car from "../assets/car.png";
 import part1 from "../assets/part1.jpg";
+import Service2 from "../assets/Service2.jpg";
 import part11 from "../assets/part11.png";
 import bg1 from "../assets/bg1.jpg";
+import './Home.css';
+// import styled from 'styled-components';
 
 
 
@@ -16,6 +19,9 @@ import { motion } from 'framer-motion';
 const Home = () => {
   return (
     <div>
+        
+        
+
           {/* Nav Bar is Started Here  */}
                     <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
@@ -127,51 +133,93 @@ const Home = () => {
                 <br />
                 <br />
                 <br />
-
-                {/* 🖼 Left Side - Image */} 
-                
-                 <div className="relative flex items-center justify-center w-[240px] md:w-[300px] lg:w-[360px] h-auto mx-auto group">
-                {/* 🌈 Smaller Gradient Blob Background */}
-                <div className="absolute inset-0 blur-xl opacity-50 bg-gradient-to-br from-yellow-300 via-yellow-400 to-yellow-500 rounded-full scale-110 z-0 group-hover:scale-[1.2] transition-transform duration-700 ease-in-out"></div>
-
-                {/* 🖼 SVG with Clipped Image - Smaller Blob */}
-                <svg
-                    viewBox="0 0 200 200"
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="relative w-full h-auto z-10 drop-shadow-2xl transition-all duration-700 ease-in-out group-hover:scale-105"
-                    preserveAspectRatio="xMidYMid meet"
-                >
-                    <defs>
-                    <clipPath id="blobClip">
+                {/*Services Tage */}
+                <div class="container grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto p-6 flex-col gap-6 mt-5">
+                <div class="card p-6 rounded-xl shadow-md text-center">
+                    <div class="content">
+                        <svg
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                        >
                         <path
-                        d="M43.3,-60.1C57.4,-54.6,71.2,-43.3,75.6,-29.4C80,-15.5,75.1,1,67.2,15.7C59.3,30.5,48.5,43.5,35.4,53.6C22.3,63.6,11.2,70.7,-0.9,71.9C-13,73,-26.1,68.2,-38.3,60.4C-50.6,52.6,-61.9,41.8,-65.2,29.1C-68.5,16.4,-63.7,1.8,-59.2,-13.5C-54.7,-28.7,-50.5,-44.6,-40.4,-51.6C-30.3,-58.6,-15.1,-56.7,-0.6,-55.9C13.9,-55.2,27.8,-55.6,43.3,-60.1Z"
-                        transform="translate(100 100) scale(0.75)"  // Shrinking the shape
-                        />
-                    </clipPath>
-                    </defs>
-
-                    {/* 🖼 Clipped Image Inside Smaller Blob */}
-                    <image
-                    href={bg1}
-                    width="100%"
-                    height="100%"
-                    preserveAspectRatio="xMidYMid slice"
-                    clipPath="url(#blobClip)"
-                    />
-                </svg>
+                            d="M20 9V5H4V9H20ZM20 11H4V19H20V11ZM3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM5 12H8V17H5V12ZM5 6H7V8H5V6ZM9 6H11V8H9V6Z"
+                        ></path>
+                        </svg>
+                        <p class="para">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi laboriosam
+                        at voluptas minus culpa deserunt delectus sapiente inventore pariatur
+                        </p>
+                    </div>
+                </div>
+                <br />
+                <br />
+                <div class="card p-6 rounded-xl shadow-md text-center">
+                    <div class="content">
+                        <svg
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                        >
+                        <path
+                            d="M20 9V5H4V9H20ZM20 11H4V19H20V11ZM3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM5 12H8V17H5V12ZM5 6H7V8H5V6ZM9 6H11V8H9V6Z"
+                        ></path>
+                        </svg>
+                        <p class="para">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi laboriosam
+                        at voluptas minus culpa deserunt delectus sapiente inventore pariatur
+                        </p>
+                    </div>
+                </div>
+                <br />
+                <br />
+                <div class="card p-6 rounded-xl shadow-md text-center">
+                    <div class="content">
+                        <svg
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                        >
+                        <path
+                            d="M20 9V5H4V9H20ZM20 11H4V19H20V11ZM3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM5 12H8V17H5V12ZM5 6H7V8H5V6ZM9 6H11V8H9V6Z"
+                        ></path>
+                        </svg>
+                        <p class="para">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi laboriosam
+                        at voluptas minus culpa deserunt delectus sapiente inventore pariatur
+                        </p>
+                    </div>
+                </div>
+                <br />
+                <br />
+                <div class="card p-6 rounded-xl shadow-md text-center">
+                    <div class="content">
+                        <svg
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                        >
+                        <path
+                            d="M20 9V5H4V9H20ZM20 11H4V19H20V11ZM3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM5 12H8V17H5V12ZM5 6H7V8H5V6ZM9 6H11V8H9V6Z"
+                        ></path>
+                        </svg>
+                        <p class="para">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi laboriosam
+                        at voluptas minus culpa deserunt delectus sapiente inventore pariatur
+                        </p>
+                    </div>
+                </div>
                 </div>
 
 
 
-
-
-
-
+                {/*End of the Services*/} 
+                
+                
                 <br />
                 <br />
                 <br />
                 <br />
-
                 {/* ✅ Right Side: Text & Button Animation */}
                     <motion.div
                         initial={{ opacity: 0, x: 80 }}
