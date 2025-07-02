@@ -10,6 +10,8 @@ import Service2 from "../assets/Service2.jpg";
 import part11 from "../assets/part11.png";
 import bg1 from "../assets/bg1.jpg";
 import './Home.css';
+// import { defineConfig } from 'vite';
+// import tailwindcss from '@tailwindcss/vite';
 // import styled from 'styled-components';
 
 
@@ -133,84 +135,24 @@ const Home = () => {
                 <br />
                 <br />
                 <br />
+                
                 {/*Services Tage */}
-                <div class="container grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto p-6 flex-col gap-6 mt-5">
-                <div class="card p-6 rounded-xl shadow-md text-center">
-                    <div class="content">
-                        <svg
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                        >
-                        <path
-                            d="M20 9V5H4V9H20ZM20 11H4V19H20V11ZM3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM5 12H8V17H5V12ZM5 6H7V8H5V6ZM9 6H11V8H9V6Z"
-                        ></path>
-                        </svg>
-                        <p class="para">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi laboriosam
-                        at voluptas minus culpa deserunt delectus sapiente inventore pariatur
-                        </p>
-                    </div>
-                </div>
-                <br />
-                <br />
-                <div class="card p-6 rounded-xl shadow-md text-center">
-                    <div class="content">
-                        <svg
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                        >
-                        <path
-                            d="M20 9V5H4V9H20ZM20 11H4V19H20V11ZM3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM5 12H8V17H5V12ZM5 6H7V8H5V6ZM9 6H11V8H9V6Z"
-                        ></path>
-                        </svg>
-                        <p class="para">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi laboriosam
-                        at voluptas minus culpa deserunt delectus sapiente inventore pariatur
-                        </p>
-                    </div>
-                </div>
-                <br />
-                <br />
-                <div class="card p-6 rounded-xl shadow-md text-center">
-                    <div class="content">
-                        <svg
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                        >
-                        <path
-                            d="M20 9V5H4V9H20ZM20 11H4V19H20V11ZM3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM5 12H8V17H5V12ZM5 6H7V8H5V6ZM9 6H11V8H9V6Z"
-                        ></path>
-                        </svg>
-                        <p class="para">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi laboriosam
-                        at voluptas minus culpa deserunt delectus sapiente inventore pariatur
-                        </p>
-                    </div>
-                </div>
-                <br />
-                <br />
-                <div class="card p-6 rounded-xl shadow-md text-center">
-                    <div class="content">
-                        <svg
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                        >
-                        <path
-                            d="M20 9V5H4V9H20ZM20 11H4V19H20V11ZM3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM5 12H8V17H5V12ZM5 6H7V8H5V6ZM9 6H11V8H9V6Z"
-                        ></path>
-                        </svg>
-                        <p class="para">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi laboriosam
-                        at voluptas minus culpa deserunt delectus sapiente inventore pariatur
-                        </p>
-                    </div>
-                </div>
-                </div>
 
+                      <div class="card">
+      <p class="card-title">Product Name</p>
+      <p class="small-desc">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat
+        veritatis nobis saepe itaque rerum nostrum aliquid obcaecati odio
+        officia deleniti. Expedita iste et illum, quaerat pariatur consequatur
+        eum nihil itaque!
+      </p>
+      <div class="go-corner">
+        <div class="go-arrow">→</div>
+      </div>
+    </div>
+                
+
+  
 
 
                 {/*End of the Services*/} 
@@ -288,6 +230,7 @@ const Home = () => {
             </div>
 
         </div>
+
 
   );
 };
