@@ -1,4 +1,9 @@
-/* From Uiverse.io by SouravBandyopadhyay */ 
+/* From Uiverse.io by SouravBandyopadhyay */
+.container{
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+} 
 .card-title {
   color: #262626;
   font-size: 1.5em;
@@ -40,13 +45,17 @@
 }
 
 .card {
+  flex:1;
+
   display: block;
   position: relative;
   max-width: 300px;
   max-height: 320px;
   background-color: #f2f8f9;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  padding: 2em 1.2em;
+  background: #fff;
+  padding: 20px;
   margin: 12px;
   text-decoration: none;
   z-index: 0;
