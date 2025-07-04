@@ -3,15 +3,13 @@ import React from 'react';
 // import tailwindcss from '@tailwindcss/vite';
 // import styled from 'styled-components';
 import './Service.css';
-import logo from "../assets/logo.png";
+// import logo from "../assets/logo.png";
 
 
-const Serivce = () => {
+const Serivce = () => { 
   return (
-        <div className="body h-fit min-h-screen gap-4 relative top-28 mb-28 flex flex-wrap items-center justify-around">
-           <div className="grid grid-cols-2 gap-6">
-
-            
+        <div className="">
+           <div className=" border rounded-full p-4">
             <div className=" justify-center align-center" >
               <h1 className="text-center text-black text-5xl font-bold font-weight-3">Our Services</h1>
             </div>
