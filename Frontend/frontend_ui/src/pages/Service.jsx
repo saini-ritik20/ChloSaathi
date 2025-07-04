@@ -8,57 +8,12 @@ import logo from "../assets/logo.png";
 
 const Serivce = () => {
   return (
-        <div>
+        <div className="body h-fit min-h-screen gap-4 relative top-28 mb-28 flex flex-wrap items-center justify-around">
+           <div className="grid grid-cols-2 gap-6">
 
-          {/* Nav Bar is Started Here  */}
-                              <link
-                      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-                      rel="stylesheet"
-                      />
-          
-                      <nav className="navbar navbar-expand-lg center navbar-light border rounded-5 mx-3 mt-3 shadow-lg">
-                      <div className="container-fluid">
-                          <a href="Home.jsx" className="navbar-brand d-flex align-items-center">
-                          <img src={logo} width={40} height={40} alt="Taxi Logo" className="me-2" />
-                          <span className="fw-bold fs-4 text-warning">RideNow</span>
-                          </a>
-                          <button
-                          className="navbar-toggler"
-                          type="button"
-                          data-bs-toggle="collapse"
-                          data-bs-target="#navbarScroll"
-                          aria-controls="navbarScroll"
-                          aria-expanded="false"
-                          aria-label="Toggle navigation"
-                          >
-                          <span className="navbar-toggler-icon"></span>
-                          </button>
-          
-                          <div className="collapse navbar-collapse" id="navbarScroll">
-                          <ul className="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll">
-                              <li className="nav-item me-4">
-                              <a className="nav-link text-dark" href="BookRide">Book a Ride</a>
-                              </li>
-                              <li className="nav-item me-4">
-                              <a className="nav-link text-dark" href='Service'>Service</a>
-                              </li>
-                              <li className="nav-item me-4">
-                              <a className="nav-link text-dark" href="AboutUs">About Us</a>
-                              </li>
-                              <li className="nav-item me-4">
-                              <a className="nav-link text-dark" href="ContactUs">Contact</a>
-                              </li>
-                          </ul>
-                          <button className="btn btn-outline-warning me-5" type="submit">Login</button>
-                          </div>
-                      </div>
-                      </nav>
-                {/* Nav bar  */}
-
-          <div >
             
-            <div class="  p-5 mx-3 justify-center align-center" >
-              <h1 class="text-center text-black text-5xl font-bold font-weight-3">Our Services</h1>
+            <div className=" justify-center align-center" >
+              <h1 className="text-center text-black text-5xl font-bold font-weight-3">Our Services</h1>
             </div>
             
             <div class="card">
@@ -222,7 +177,8 @@ const Serivce = () => {
               adipisicing elit
             </p>
           </div>
-          </div>        
+          </div>    
+
       </div>
 
 

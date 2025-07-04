@@ -1,4 +1,37 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@700&display=swap");
+
+:root {
+  /* Colors */
+  --brand-color: hsl(46, 100%, 50%);
+  --black: hsl(0, 0%, 0%);
+  --white: hsl(0, 0%, 100%);
+  /* Fonts */
+  --font-title: "Montserrat", sans-serif;
+  --font-text: "Lato", sans-serif;
+}
+
+/* .body,
+h2,
+p {
+  margin: 0;
+} */
+.body{
+  display: grid;
+  place-items: center;
+  height: 100vh;
+}
+.container{
+   display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* separates the cards */
+    padding: 20px;
+}
 .card {
+  float:left;
+  display: grid;
+  overflow: hidden;
+  place-items: center;
+   margin:40px 20px ;
   width: 280px;
   background: #f5f5f5;
   border-radius: 10px;
