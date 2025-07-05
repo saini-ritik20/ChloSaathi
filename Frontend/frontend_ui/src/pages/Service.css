@@ -21,27 +21,32 @@ p {
   height: 100vh;
   padding:100px;
 } */
-/* .container{
+.container{
   display:flex;
-  float:right;
-
-} */
+  float:left;
+  place-items:center;
+  position : relative;
+  align-items:center;
+  justify-content:center;
+}
 .card {
- /* float:left; */
-  display: grid;
-  overflow: hidden;
+ float:left;
+  display: flex;
+  /* overflow: hidden; */
   place-items: center; 
-  width: 280px;
+  width: 500px;
+  height: 900px;
   background: #f5f5f5;
   border-radius: 10px;
-  /* padding: 100px; */
-  gap:10px;
+  padding: 100px 100px;
+  margin:200px 100px;
+  gap:30px;
   position: relative;
   align-items: center;
   justify-content: center;
   box-shadow: 0 0 10px #4445;
   cursor: pointer;
-  transition: all 0.4s ease-in-out;
+  transition: all 0.1s ease-in-out;
 }
 
 .icon,

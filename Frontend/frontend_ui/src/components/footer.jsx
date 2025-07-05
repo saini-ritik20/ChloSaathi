@@ -1,11 +1,12 @@
 import React from 'react'
+import logo from "../assets/logo.png";
 
 const Footer = () => {
   return (
     // <div className=' sm:w-full min-h-80'>
       <footer className="section-p1 p-5 relative top-20 -right-0">
         <div className="col">
-          <img className="logo" src="file:///C:/Users/asus/Desktop/global%20reach/logo_eva-removebg.png" alt="" />
+          <img className="logo" width={80} height={80} src={logo} alt="" />
           <h4 className=' text-xl font-semibold'>Contact</h4>
           <p><strong>Address:</strong> 563 Wellington Road,Street 32,San Francisco</p>
           <p><strong>Phonr:</strong>+01 528 654 8520</p>
@@ -52,7 +53,7 @@ const Footer = () => {
           <img src="file:///C:/Users/asus/Desktop/e-commerce/image/pay.png" alt="" />
         </div>
         <div className="copyright">
-          <p> 2023,Vienna etc - HTML CSS E-Commerce Template </p>
+          <p> 2025,Kanpur etc - HTML CSS Chalo-Saathi Template </p>
         </div>
       </footer>
     // </div>

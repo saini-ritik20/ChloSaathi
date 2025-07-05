@@ -1,14 +1,13 @@
-import './App.css'
-import MainPage from './components/MainPage'
+import './App.css';
+import { BrowserRouter } from 'react-router-dom';
+import MainPage from './components/MainPage';
 
 function App() {
-
-
   return (
-    <>
-    <MainPage/>
-    </>
-  )
+    <BrowserRouter>
+      <MainPage />
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
