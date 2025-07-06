@@ -1,12 +1,11 @@
-import './App.css';
-import { BrowserRouter } from 'react-router-dom';
-import MainPage from './components/MainPage';
+import { BrowserRouter as Router } from 'react-router-dom';
+import MainPage from './components/mainPage'; // adjust the path if needed
 
 function App() {
   return (
-    <BrowserRouter>
+    <Router>
       <MainPage />
-    </BrowserRouter>
+    </Router>
   );
 }
 

@@ -22,12 +22,12 @@ p {
   padding:100px;
 } */
 .container{
-  display:flex;
-  float:left;
-  place-items:center;
+  display:flex; 
+  float:right;
+  place-items:center; 
   position : relative;
-  align-items:center;
-  justify-content:center;
+  align-items:center; 
+ justify-content:center; 
 }
 .card {
  float:left;
@@ -40,7 +40,7 @@ p {
   border-radius: 10px;
   padding: 100px 100px;
   margin:200px 100px;
-  gap:30px;
+  gap:50px;
   position: relative;
   align-items: center;
   justify-content: center;
@@ -118,4 +118,14 @@ p {
 .card:hover .content {
   color: #f5f5f5;
   fill: #f5f5f5;
+}
+
+.picture{
+    display:flex; 
+  float:right;
+  place-items:center; 
+  position : relative;
+  align-items:center; 
+ justify-content:center; 
+
 }

@@ -59,7 +59,14 @@ const Home = () => {
                 <br />
                 
                 {/*Services Tags */}
-                <Service />
+                {/* <Service /> */}.
+                <div className='border rounded-full'>
+
+                    <h1>Our Service</h1>
+
+
+
+                </div>
                 {/*End of the Services*/} 
                 
                 

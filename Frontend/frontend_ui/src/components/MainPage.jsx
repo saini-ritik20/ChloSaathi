@@ -1,9 +1,10 @@
-import Navbar from './Navbar';
-import Footer from './footer';
+// MainPage.jsx
+import Navbar from './Navbar.jsx';
+import Footer from './footer.jsx';
 import { Routes, Route } from 'react-router-dom';
-import Home from '../pages/Home';
+import Home from '../pages/Home.jsx';
 import Service from '../pages/Service.jsx';
-import Login from '../pages/login';
+import Login from '../pages/login.jsx';
 
 function MainPage() {
   return (
