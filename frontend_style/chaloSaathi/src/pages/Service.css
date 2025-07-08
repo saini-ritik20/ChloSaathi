@@ -1,14 +1,14 @@
-@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@700&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@700&display=swap");
 
 :root {
   /* Colors */
-  --brand-color: hsl(46, 100%, 50%);
+  /* --brand-color: hsl(46, 100%, 50%);
   --black: hsl(0, 0%, 0%);
-  --white: hsl(0, 0%, 100%);
+  --white: hsl(0, 0%, 100%); */
   /* Fonts */
-  --font-title: "Montserrat", sans-serif;
-  --font-text: "Lato", sans-serif;
-}
+  /* --font-title: "Montserrat", sans-serif;
+  --font-text: "Lato", sans-serif; */
+
 
 /* .body,
 h2,
@@ -21,111 +21,125 @@ p {
   height: 100vh;
   padding:100px;
 } */
+.content{
+  justify-content:center;
+  align-items:center;
+  
+}
+.services-container{
+  /* justify-content:center;
+  align-items:center; */
+  display:grid;
+  flex:left;
+  position:relative;
+}
+.cards-contain{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 .container{
   display:flex; 
-  float:right;
+  /* float:right; */
   place-items:center; 
   position : relative;
-  align-items:center; 
- justify-content:center; 
-}
-.card {
- float:left;
-  display: flex;
-  /* overflow: hidden; */
-  place-items: center; 
-  width: 500px;
-  height: 900px;
-  background: #f5f5f5;
-  border-radius: 10px;
-  padding: 100px 100px;
-  margin:200px 100px;
-  gap:50px;
-  position: relative;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 0 10px #4445;
-  cursor: pointer;
-  transition: all 0.1s ease-in-out;
+  /* align-items:center; 
+ justify-content:center;  */
 }
 
-.icon,
-.heading,
-.content {
+.image-store{
+  display:flex;
+  flex:left;
+  position:relative;
+}
+/* From Uiverse.io by MikeAndrewDesigner */ 
+.e-card {
+  margin: 100px auto;
+  background: transparent;
+  box-shadow: 0px 8px 28px -9px rgba(0,0,0,0.45);
   position: relative;
-  z-index: 5;
-  transition: all 0.5s;
+  width: 240px;
+  height: 330px;
+  display:flex;
+  flex:left;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.wave {
+  position: absolute;
+  width: 540px;
+  height: 700px;
+  opacity: 0.6;
+  left: 0;
+  top: 0;
+  margin-left: -50%;
+  margin-top: -70%;
+  background: linear-gradient(744deg,#af40ff,#5b42f3 60%,#00ddeb);
 }
 
 .icon {
-  width: 40px;
-  fill: rgb(139, 92, 246);
-  margin-bottom: 20px;
+  width: 3em;
+  margin-top: -1em;
+  padding-bottom: 1em;
 }
 
-.heading {
+.infotop {
+  text-align: center;
   font-size: 20px;
-  font-weight: 800;
-  margin-bottom: 20px;
-}
-
-.number {
   position: absolute;
-  top: -90px;
-  right: -85px;
-  padding: 80px 100px 30px 30px;
-  background: rgb(139, 92, 246);
-  border-radius: 100%;
-  z-index: 5;
-}
-
-.number .text {
-  font-size: 28px;
+  top: 5.6em;
+  left: 0;
+  right: 0;
+  color: rgb(255, 255, 255);
   font-weight: 600;
-  color: #fff;
 }
 
-.text {
-  margin-top: 20px;
+.name {
+  font-size: 14px;
+  font-weight: 100;
+  position: relative;
+  top: 1em;
+  text-transform: lowercase;
 }
 
-.number::after {
-  content: "";
-  width: 50px;
-  height: 50px;
-  background: rgb(139, 92, 246);
-  position: absolute;
-  border-radius: 100%;
-  top: 50%;
-  right: 50%;
-  transition: all 0.5s;
-  transform: translateX(50%) translateY(-50%);
-  z-index: -1;
+.wave:nth-child(2),
+.wave:nth-child(3) {
+  top: 210px;
 }
 
-.card:hover {
-  scale: 1.02;
-  box-shadow: 0 5px 20px #444e;
-} 
-
-.card:hover .number::after {
-  width: 900px;
-  height: 900px;
+.playing .wave {
+  border-radius: 40%;
+  animation: wave 3000ms infinite linear;
 }
 
-.card:hover .icon,
-.card:hover .heading,
-.card:hover .content {
-  color: #f5f5f5;
-  fill: #f5f5f5;
+.wave {
+  border-radius: 40%;
+  animation: wave 55s infinite linear;
 }
 
-.picture{
-    display:flex; 
-  float:right;
-  place-items:center; 
-  position : relative;
-  align-items:center; 
- justify-content:center; 
+.playing .wave:nth-child(2) {
+  animation-duration: 4000ms;
+}
 
+.wave:nth-child(2) {
+  animation-duration: 50s;
+}
+
+.playing .wave:nth-child(3) {
+  animation-duration: 5000ms;
+}
+
+.wave:nth-child(3) {
+  animation-duration: 45s;
+}
+
+@keyframes wave {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
