@@ -24,8 +24,19 @@ p {
 .content{
   justify-content:center;
   align-items:center;
+  /* display: flex;
+  flex:center; */
+  font-size: 20px;
+  font-family: 'Arial', sans-serif;
+
   
 }
+/* .heading{
+  align-items:center;
+  justify-content:center;
+  font-style: italic;
+
+} */
 .services-container{
   /* justify-content:center;
   align-items:center; */
