@@ -7,6 +7,7 @@ import Service from './Service.jsx'
 // import logo from "../assets/logo.png";
 import car from "../assets/car.png";
 import Part3 from "../assets/part3.png"
+import Part4 from "../assets/part4.jpg"
 import styled from 'styled-components'
 // import Service2 from "../assets/Service2.jpg";
 // import part11 from "../assets/part11.png";
@@ -88,10 +89,15 @@ function Home(){
                           animate={{ scale: 1, opacity: 1 }}
                           transition={{ delay: 0.3 }}
                         >
-                          <img src={Part3} className="picture" width={500} height={400} alt="image" />
+                          <img src={Part4} className="picture" width={500} height={400} alt="image" />
                           <div className='content'>
                             {/* <h3 className=''>Chalo Saathi</h3> */}
-                            <p>we’re dedicated to providing safe, affordable, and comfortable daily rides for everyone—whether you're heading to work, college, the market, or home.</p>
+                            <h2>Your Daily Ride, Made Easy</h2>
+                            <p>Safe. Affordable. Comfortable. Always.
+
+                              Whether you're commuting to work, heading to college, shopping at the market, or returning home, we’ve got you covered with smooth and reliable rides—every single day.
+
+                              </p>
                             <p>Fixed and transparent pricing .</p>
                             <p>Verified & trained drivers .</p>
                             <p>Real-time GPS tracking .</p>
