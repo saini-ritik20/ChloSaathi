@@ -9,6 +9,8 @@ import car from "../assets/car.png";
 import Part3 from "../assets/part3.png"
 import Part4 from "../assets/part4.jpg"
 import styled from 'styled-components'
+import Contact from './Contact.jsx'
+
 // import Service2 from "../assets/Service2.jpg";
 // import part11 from "../assets/part11.png";
 // import bg1 from "../assets/bg1.jpg";
@@ -178,9 +180,9 @@ function Home(){
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.6 }}
-                    className="btn btn-outline-warning btn-lg px-5 py-3 fw-bold rounded-pill shadow-lg mt-3"
+                    className=" btn btn-outline-warning btn-lg px-5 py-3 fw-bold rounded-pill shadow-lg mt-3 "
                 >
-                    contact Us
+                    <a href='Contact' className='no-underline text-black hover:text-yellow-500 font-medium'>Connect With Us</a>
                 </motion.button>
                 </motion.div>
 
