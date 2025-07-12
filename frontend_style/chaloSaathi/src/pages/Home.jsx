@@ -18,10 +18,24 @@ import './Home.css';
 // import { defineConfig } from 'vite';
 // import tailwindcss from '@tailwindcss/vite';
 // import styled from 'styled-components';
-
-
-
 import { motion } from 'framer-motion';
+
+
+{/* Popularity Section */}
+const stats = [
+  { value: "1M+", label: "rides completed" },
+  { value: "98%", label: "on-time rating" },
+  { value: "300+", label: "cities served" },
+];
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: (i) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, delay: i * 0.2 },
+  }),
+};
 
 function Home(){
   return (
@@ -61,6 +75,30 @@ function Home(){
                 <br />
                 <br />
                 <br />
+
+                {/* Start Popularity */}
+
+                <div className="impact-wrapper">
+                  {/* <h2 className="impact-title">Our Impact</h2> */}
+                  <div className="impact-cards">
+                    {stats.map((item, i) => (
+                      <motion.div
+                        key={item.label}
+                        className="impact-card"
+                        variants={fadeUp}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        custom={i}
+                      >
+                        <div className="impact-value">{item.value}</div>
+                        <div className="impact-label">{item.label}</div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* End Popularity Section */}
                 
                 {/*Services Tags */}
                 {/* <Service /> */}.

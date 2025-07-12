@@ -95,4 +95,61 @@
 
 
 
+// Popularity Section 
+
+/* Base Container */
+.impact-wrapper {
+  background-color: #fdfdfd;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+/* Section Title */
+.impact-title {
+  font-size: 2.5rem;
+  color: #111;
+  display:flex;
+  justify-contact:center;
+  align-items:center;
+  font-weight: 700;
+  margin-bottom: 50px;
+}
+
+/* Cards Layout */
+.impact-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  justify-content: center;
+}
+
+/* Card Styles */
+.impact-card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 40px 30px;
+  width: 240px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07);
+  transition: transform 0.3s ease;
+}
+
+.impact-card:hover {
+  transform: translateY(-8px);
+}
+
+/* Values & Labels */
+.impact-value {
+  font-size: 2.75rem;
+  font-weight: bold;
+  color: #ffa600; /* Gold / Taxi Yellow */
+  margin-bottom: 10px;
+}
+
+.impact-label {
+  font-size: 1.125rem;
+  color: #333;
+}
+
+
+
 
