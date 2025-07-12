@@ -41,21 +41,22 @@ function login(){
           <input placeholder="Password" title="Inpit title" name="input-name" type="password" className="input_field" id="password_field" />
         </div>
         <br />
-        <br />
+        <div className='Buttons'>
         <button title="Login" type="submit" className="sign-in_btn">
           <span>Login</span>
         </button>
         <br />
         <br />
+
+        <button title="Sign In" type="submit" className="sign-in_btn">
+          <span>Sign In</span>
+        </button>
+        </div>
         <div className="separator">
           <hr className="line" />
           <span>Or</span>
           <hr className="line" />
         </div>
-        <br />
-        <button title="Sign In" type="submit" className="sign-in_btn">
-          <span>Sign In</span>
-        </button>
         <button title="Sign In" type="submit" className="sign-in_ggl">
           <svg height={18} width={18} viewBox="0 0 32 32" xmlnsXlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
             <defs>
@@ -72,6 +73,7 @@ function login(){
           </svg>
           <span>Sign In with Google</span>
         </button>
+        <br />
         <button title="Sign In" type="submit" className="sign-in_apl">
           <svg preserveAspectRatio="xMidYMid" version="1.1" viewBox="0 0 256 315" height="20px" width="16px" xmlnsXlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
             <g>
@@ -181,7 +183,8 @@ const StyledWrapper = styled.div`
   }
 
   .sign-in_btn {
-    width: 100%;
+   
+    width: 40%;
     height: 40px;
     border: 0;
     background: #115DFC;
@@ -240,6 +243,13 @@ const StyledWrapper = styled.div`
     height: 1px;
     border: 0;
     background-color: #e8e8e8;
+  }
+
+  .Buttons{
+     display: flex;
+      gap: 10px;
+      justify-content: center; /* horizontally center the buttons */
+      align-items: center;     /* vertically align buttons */
   }
 
   .note {
