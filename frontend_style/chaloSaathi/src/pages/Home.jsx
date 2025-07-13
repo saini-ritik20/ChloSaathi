@@ -1,23 +1,17 @@
-// HomePage.js
-// import React from 'react';
-// import { Link } from 'react-router-dom'
-// import AboutUs from "./AboutUs.jsx";
-// import ContactUs from "./Contact.jsx";
+
 import Service from './Service.jsx'
-// import logo from "../assets/logo.png";
+// import mapIcon from '../assets/mapIcon.png'
+// import gpsIcon from '../assets/gpsIcon.png'
+// import confirmIcon from '../assets/confirmIcon.png'
+// import carIcon from '../assets/carIcon1.png'
+
 import car from "../assets/car.png";
 import Part3 from "../assets/part3.png"
 import Part4 from "../assets/part4.jpg"
 import styled from 'styled-components'
 import Contact from './Contact.jsx'
 
-// import Service2 from "../assets/Service2.jpg";
-// import part11 from "../assets/part11.png";
-// import bg1 from "../assets/bg1.jpg";
 import './Home.css';
-// import { defineConfig } from 'vite';
-// import tailwindcss from '@tailwindcss/vite';
-// import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
 
@@ -36,6 +30,67 @@ const fadeUp = {
     transition: { duration: 0.6, delay: i * 0.2 },
   }),
 };
+
+{/* Make better */}
+const features = [
+  {
+    icon: "✔️",
+    title: "Fixed & Transparent Pricing",
+    description: "No surprises, no hidden fees",
+  },
+  {
+    icon: "🚗",
+    title: "Wide Fleet Options",
+    description: "Cars to suit every need",
+  },
+  {
+    icon: "🧑‍✈️",
+    title: "Verified Drivers",
+    description: "Professional and reliable",
+  },
+  {
+    icon: "🛡️",
+    title: "Safety First",
+    description: "Your well-being, our priority",
+  },
+  {
+    icon: "📱",
+    title: "24x7 App Support",
+    description: "Help when you need it",
+  },
+];
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: i => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.2,
+      type: "spring",
+      stiffness: 80,
+    },
+  }),
+};
+
+{/* make it  */}
+const steps = [
+  {
+    id: 1,
+    title: "Select Pickup & Drop",
+    icon: "📍➡️🏁",
+  },
+  {
+    id: 2,
+    title: "Choose Your Taxi",
+    icon: "🚕",
+  },
+  {
+    id: 3,
+    title: "Get Picked Up",
+    icon: "🙋‍♂️🚖",
+  },
+];
 
 function Home(){
   return (
@@ -99,6 +154,67 @@ function Home(){
                 </div>
 
                 {/* End Popularity Section */}
+
+                {/* Start How to work  */}
+
+                <div className="why-section">
+                  <br />
+                  <h2 className="section-title">Why Choose Us</h2>
+                  <br />
+                  <div className="card-container">
+                    {features.map((feature, index) => (
+                      <motion.div
+                        key={index}
+                        custom={index}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        variants={cardVariants}
+                        className="feature-card"
+                        whileHover={{ scale: 1.05 }}
+                      >
+                        <div className="icon">{feature.icon}</div>
+                        <h3>{feature.title}</h3>
+                        <p>{feature.description}</p>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+               
+
+                {/* Ende of the work */}
+
+
+                {/* Live feet */}
+
+                <div className="how-section">
+                  <br />
+                      <div className='heading_container'>
+                        <h2 className="how-title ">How It Works</h2>
+                      </div>
+                      <br />
+                      <div className="steps-container">
+                        {steps.map((step, index) => (
+                          <motion.div
+                            key={index}
+                            className="step-card"
+                            initial={{ x: 100, opacity: 0 }}
+                            whileInView={{ x: 0, opacity: 1 }}
+                            transition={{ duration: 0.6, delay: index * 0.3, type: "spring" }}
+                            viewport={{ once: true }}
+                          >
+                            <div className="step-icon">{step.icon}</div>
+                            <div className="step-number">{step.id}</div>
+                            <div className="step-title">{step.title}</div>
+                          </motion.div>
+                        ))}
+                      </div>
+                    </div>
+                  <br />
+                  <br />
+                  <br />
+                 
+                {/* Live feet */}
                 
                 {/*Services Tags */}
                 {/* <Service /> */}.
