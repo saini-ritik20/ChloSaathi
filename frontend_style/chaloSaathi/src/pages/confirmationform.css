@@ -1,0 +1,82 @@
+/* Container */
+.booking-container {
+  max-width: 420px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 1.5rem;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Heading */
+.booking-heading {
+  text-align: center;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1f2937;            /* gray‑900 */
+  margin-bottom: 1.5rem;
+}
+
+/* Field wrapper */
+.booking-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Each row */
+.form-row {
+  display: flex;
+  align-items: center;
+  border: 1px solid #d1d5db; /* gray‑300 */
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  transition: border-color 0.25s;
+}
+
+.form-row:hover,
+.form-row:focus-within {
+  border-color: #2563eb;     /* blue‑600 */
+}
+
+/* Row icon */
+.row-icon {
+  color: #6b7280;            /* gray‑500 */
+  margin-right: 0.75rem;
+  flex-shrink: 0;
+}
+
+/* Input / select */
+.row-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  color: #374151;            /* gray‑700 */
+  background: transparent;
+}
+
+/* click cursor for select row */
+.clickable {
+  cursor: pointer;
+}
+
+/* Confirm button */
+.confirm-btn {
+  width: 100%;
+  margin-top: 1.5rem;
+  padding: 0.9rem 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #000000;
+  background: linear-gradient(90deg, #facc15, #fbbf24); /* yellow‑400 → yellow‑500 */
+  border: none;
+  border-radius: 0.75rem;
+  box-shadow: 0 8px 15px rgba(250, 204, 21, 0.25);
+  transition: background 0.25s;
+  cursor: pointer;
+}
+
+.confirm-btn:hover {
+  background: linear-gradient(90deg, #fbbf24, #facc15);
+}

@@ -5,7 +5,9 @@ import Home from "./pages/Home";
 import About from "./pages/AboutUs";
 import Service from "./pages/Service";
 import Contact from "./pages/Contact";
+import BookRide from "./pages/BookRide";
 import Login from "./pages/Login";
+// import BookingForm from "./pages/ConfirmationForm";
 
 
 
@@ -18,6 +20,9 @@ const router = createBrowserRouter([
       { path: '/About', element: <About /> },
       { path: '/Service', element: <Service /> },
       { path: '/Contact', element: <Contact /> },
+      {path: '/BookRide',element:<BookRide/>},
+      {path: '/BookingForm',element:<BookingForm/>},
+
       // { path: "*", element: <NotFound /> },
     ]
   },

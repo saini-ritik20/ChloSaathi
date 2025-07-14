@@ -94,7 +94,6 @@ const steps = [
 
 function Home(){
   return (
-    
         <div>
         {/* Starting of the Home Page  */}
         <div className='me-4 p-5'>
