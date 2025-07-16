@@ -1,8 +1,6 @@
-.contact-container {
-  /* min-height: 100vh; */
+/* .contact-container {
   width:100%;
-  /* height:700px; */
-  background-color: #f9fafb; /* Tailwind's gray-50 */
+  background-color: #f9fafb; 
   display: flex;
   align-items: center;
   justify-content: center;
@@ -17,17 +15,15 @@
   diaplay:flex;
   float:left;
   width: 100%;
-  /* left:2rem; */
-  /* max-width: 28rem; */
+  
   position: relative;
 }
 
 .contact-title {
   font-size: 1.875rem;
   font-weight: 700;
-  /* float:left; */
   text-align: center;
-  color: #1f2937; /* Tailwind's gray-800 */
+  color: #1f2937; 
   margin-bottom: 1.5rem;
 }
 
@@ -42,24 +38,24 @@
   display: block;
   margin-bottom: 0.25rem;
   font-weight: 500;
-  color: #374151; /* gray-700 */
+  color: #374151;
 }
 
 .form-input {
   width: 100%;
   padding: 0.5rem 1rem;
-  border: 1px solid #d1d5db; /* gray-300 */
+  border: 1px solid #d1d5db; 
   border-radius: 0.5rem;
   outline: none;
   transition: box-shadow 0.2s;
 }
 
 .form-input:focus {
-  box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.4); /* yellow-400 ring */
+  box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.4); 
 }
 
 .send-button {
-  background-color: #facc15; /* yellow-400 */
+  background-color: #facc15; 
   color: black;
   width: 100%;
   padding: 0.75rem;
@@ -74,7 +70,7 @@
 }
 
 .send-button:hover {
-  background-color: #fbbf24; /* yellow-500 */
+  background-color: #fbbf24; 
 }
 
 .send-icon {
@@ -83,20 +79,152 @@
 }
 
 .taxi-image {
-  position: relative;
-  /* bottom: -2rem; */
-  /* left:2.5rem; */
-  /* right: -2.5rem; */
-  float:right;
-  width: 500px;
-  /* padding:20px; */
-  /* height:300px; */
+  position: absolute;
+  top: 7rem;
+  
+  width: 1500px;
+  padding:20px; 
+  height:500px;
+}
+ */
+ 
+
+ .contact-container {
+  width: 100%;
+  background-color: #f9fafb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  box-sizing: border-box;
 }
 
-/* .location-icon {
+.contact-card {
+  background-color: white;
+  border-radius: 1.5rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  padding: 2.5rem;
+  display: flex;
+  /* float:left;
+  left:20px; */
+  flex-direction: column;
+  width: 1000px;
+  /* max-width: 700px; */
+  position: relative;
+  box-sizing: border-box;
+}
+
+.contact-title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  text-align: center;
+  color: #1f2937;
+  margin-bottom: 1.5rem;
+}
+
+.contact-form {
+  display: flex;
+  float:left;
+  left:20px;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  outline: none;
+  transition: box-shadow 0.2s;
+  font-size: 1rem;
+}
+
+.form-input:focus {
+  box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.4);
+}
+
+.send-button {
+  background-color: #facc15;
+  color: black;
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: background-color 0.3s;
+  border: none;
+  cursor: pointer;
+}
+
+.send-button:hover {
+  background-color: #fbbf24;
+}
+
+.send-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* Image Styles */
+.taxi-image {
   position: absolute;
-  top: -1.5rem;
-  right: 1.5rem;
-  width: 200px;
-  height:500px;
-} */
+  top: 7rem;
+  right: -8rem;
+  width: 300px;
+  height: auto;
+  opacity: 0.9;
+}
+
+/* RESPONSIVE STYLES */
+@media (max-width: 1024px) {
+  .taxi-image {
+    width: 250px;
+    right: -6rem;
+    top: 6rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .taxi-image {
+    position: static;
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    margin-top: 2rem;
+  }
+
+  .send-button {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-title {
+    font-size: 1.5rem;
+  }
+
+  .form-input {
+    font-size: 0.95rem;
+  }
+
+  .send-button {
+    padding: 0.65rem;
+    font-size: 0.95rem;
+  }
+}
+

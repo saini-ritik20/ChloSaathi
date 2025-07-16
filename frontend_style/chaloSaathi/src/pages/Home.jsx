@@ -1,15 +1,14 @@
 
 import Service from './Service.jsx'
-// import mapIcon from '../assets/mapIcon.png'
-// import gpsIcon from '../assets/gpsIcon.png'
-// import confirmIcon from '../assets/confirmIcon.png'
-// import carIcon from '../assets/carIcon1.png'
+import Profile1 from '../assets/profile1.jpeg';
+import Profile2 from '../assets/profile2.jpg';
+import Profile3 from '../assets/profile3.avif';
 
 import car from "../assets/car.png";
-import Part3 from "../assets/part3.png"
+// import Part3 from "../assets/part3.png"
 import Part4 from "../assets/part4.jpg"
 import styled from 'styled-components'
-import Contact from './Contact.jsx'
+// import Contact from './Contact.jsx'
 
 import './Home.css';
 import { motion } from 'framer-motion';
@@ -62,16 +61,17 @@ const features = [
 
 const cardVariants = {
   hidden: { opacity: 0, y: 50 },
-  visible: i => ({
+  show: i => ({
     opacity: 1,
     y: 0,
     transition: {
       delay: i * 0.2,
-      type: "spring",
+      type: 'spring',
       stiffness: 80,
     },
   }),
 };
+
 
 {/* make it  */}
 const steps = [
@@ -91,6 +91,40 @@ const steps = [
     icon: "🙋‍♂️🚖",
   },
 ];
+
+
+const testimonials = [
+  {
+    name: 'Sarah Williams',
+    image: Profile1,
+    review: 'Very convenient and reliable service. Highly recommended!',
+  },
+  {
+    name: 'John Smith',
+    image: Profile2,
+    review: 'Drivers are punctual and friendly. Great experience every time.',
+  },
+  {
+    name: 'Emily Johnson',
+    image: Profile3,
+    review: 'Easy to book and the car was very clean. Will use again.',
+  },
+];
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.3,
+    },
+  },
+};
+
+// const cardVariants = {
+//   hidden: { opacity: 0, y: 50 },
+//   show: { opacity: 1, y: 0 },
+// };
 
 function Home(){
   return (
@@ -306,12 +340,43 @@ function Home(){
                         </motion.button> */}
                     </motion.div>
 
-                {/* {/* <div className="flex flex-col-reverse lg:flex-row items-center justify-center px-8 py-16 bg-gray-50 gap-12 overflow-hidden"> */}
+                   {/* New addition of the reviews  */}
 
-                {/* <br />
-                <br />
-                <br />
-                <br /> */}
+
+
+                   <div className="testimonials-wrapper">
+                      <motion.h2
+                        className="testimonials-title"
+                        initial={{ opacity: 0, y: -30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6 }}
+                      >
+                        What Our Customers Say
+                      </motion.h2>
+
+                      <motion.div
+                        className="testimonials-container"
+                        variants={containerVariants}
+                        initial="hidden"
+                        animate="show"
+                      >
+                        {testimonials.map((t, index) => (
+                          <motion.div className="testimonial-card" key={index} variants={cardVariants}>
+                            <img src={t.image} alt={t.name} className="testimonial-image" />
+                            <h3 className="testimonial-name">{t.name}</h3>
+                            <p className="testimonial-review">{t.review}</p>
+                            <div className="testimonial-stars">
+                              {'★★★★★'.split('').map((star, i) => (
+                                <span key={i} className="star">★</span>
+                              ))}
+                            </div>
+                          </motion.div>
+                        ))}
+                      </motion.div>
+                    </div>
+
+
+
                     {/* 🖼 Right Side - Image */}
                 <div className="flex flex-col lg:flex-row-reverse items-center justify-center px-8 py-16 bg-gray-50 gap-12 overflow-hidden">
 

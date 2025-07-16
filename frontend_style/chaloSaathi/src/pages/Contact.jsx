@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Send } from 'lucide-react';
 import './Contact.css'
 import conjusted from '../assets/conjusted.png'
-import location from '../assets/GPS.png'
+// import location from '../assets/GPS.png'
 
 
 const ContactUs = () => {
@@ -78,7 +78,7 @@ const ContactUs = () => {
         <motion.img
           src={conjusted}
           alt="Taxi"
-          className="taxi-image"
+          className="taxi-image w-5 h-5"
           initial={{ x: 100, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ delay: 0.7 }}

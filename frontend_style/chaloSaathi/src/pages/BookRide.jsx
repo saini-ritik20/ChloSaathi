@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import './BookRide.css';
 import taxiImg from '../assets/taxiImg.png'; // Your taxi image path
-import ConfirmForm from './';
+import ConfirmForm from './confirmationForm';
 
 const HeroSection = () => {
   return (
