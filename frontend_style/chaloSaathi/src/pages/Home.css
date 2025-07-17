@@ -1,4 +1,5 @@
 
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
 
 /* From Uiverse.io by SouravBandyopadhyay */
 .container{
@@ -179,7 +180,7 @@
   border-radius: 20px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
   padding: 25px 20px;
-  width: 250px;
+  width: 100px;
   transition: transform 0.3s ease;
 }
 
@@ -254,68 +255,180 @@
   color: #555;
 }
 
-// Review Section
 
-.testimonials-wrapper {
-  padding: 60px 20px;
-  background-color: #fafafa;
+
+/* New Section */
+
+.why-choose-container {
+  max-width: 1200px;
+  margin: 60px auto;
+  padding: 0 20px;
   text-align: center;
 }
 
-.testimonials-title {
-  font-size: 2rem;
+.section-title {
+  font-size: 36px;
   font-weight: bold;
   margin-bottom: 40px;
-  color: #111827;
+  color: #111;
 }
 
-.testimonials-container {
+.cards-container {
   display: flex;
-  justify-content: center;
-  gap: 20px;
   flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
 }
 
-.testimonial-card {
-  background-color: #ffffff;
-  border-radius: 20px;
+.feature-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
   padding: 30px;
   width: 280px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.testimonial-card:hover {
-  transform: translateY(-5px);
+.feature-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
 }
 
-.testimonial-image {
-  width: 70px;
-  height: 70px;
-  object-fit: cover;
-  border-radius: 50%;
-  margin-bottom: 15px;
+.icon {
+  margin-bottom: 20px;
 }
 
-.testimonial-name {
-  font-size: 1.125rem;
-  font-weight: 600;
-  color: #1f2937;
+.feature-card h3 {
+  font-size: 20px;
+  color: #222;
   margin-bottom: 10px;
 }
 
-.testimonial-review {
-  font-size: 0.95rem;
-  color: #4b5563;
-  margin-bottom: 15px;
-  min-height: 60px;
-}
-
-.testimonial-stars .star {
-  color: #fbbf24;
-  font-size: 1.2rem;
+.feature-card p {
+  color: #555;
+  font-size: 16px;
 }
 
 
+/* Feature Section */
+
+.top-features {
+  padding: 60px 20px;
+  background: #fefefe;
+  text-align: center;
+}
+
+/* .section-title {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 40px;
+  color: #1e1e1e;
+} */
+ .section-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 36px;
+  font-weight: 700; /* Use numeric value for better control */
+  margin-bottom: 40px;
+  color: #1e1e1e;
+}
+
+
+.features-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+}
+
+.feature-card {
+  width: 220px;
+  padding: 25px;
+  border-radius: 16px;
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+}
+
+.icon {
+  margin-bottom: 16px;
+}
+
+.feature-card h3 {
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.feature-card p {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+/* Service Section */
+
+/* .home-services {
+  padding: 60px 20px;
+  background-color: #f9f9f9;
+  text-align: center;
+} */
+
+.home-services-title {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 40px;
+  color: #1e1e1e;
+}
+
+.services-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.service-card {
+  background: white;
+  border-radius: 16px;
+  padding: 30px;
+  width: 280px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.service-card h3 {
+  font-size: 22px;
+  margin: 15px 0 10px;
+  color: #333;
+}
+
+.service-card p {
+  font-size: 16px;
+  color: #555;
+}
+
+.service-icon {
+  font-size: 40px;
+}
+
+.see-more-button {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 24px;
+  background-color: #007bff;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
+
+.see-more-button:hover {
+  background-color: #0056b3;
+}
 
 

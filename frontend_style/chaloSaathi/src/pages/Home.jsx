@@ -1,14 +1,18 @@
 
 import Service from './Service.jsx'
-// import Profile1 from './assets/profile1.jpeg';
-// import Profile2 from './assets/profile2.jpg';
-// import Profile3 from './assets/profile3.avif';
+// import Profile1 from '../assets/profile1.jpeg';
+// import Profile2 from '../assets/profile2.jpg';
+// import Profile3 from '../assets/profile3.avif';
 
 import car from "../assets/car.png";
 // import Part3 from "../assets/part3.png"
 import Part4 from "../assets/part4.jpg"
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 // import Contact from './Contact.jsx'
+
+import { CheckCircle, Car, User, Shield, Smartphone,CalendarCheck, AlertCircle, Wallet, Star, QrCode ,MapPin } from "lucide-react";
+
 
 import './Home.css';
 import { motion } from 'framer-motion';
@@ -17,8 +21,12 @@ import { motion } from 'framer-motion';
 {/* Popularity Section */}
 const stats = [
   { value: "1M+", label: "rides completed" },
-  { value: "98%", label: "on-time rating" },
+  { value: "2K+", label: "Trusted users" },
   { value: "300+", label: "cities served" },
+  { value: "5K+", label: "live users" },
+  { value: "98%", label: "on-time rating" },
+
+
 ];
 
 const fadeUp = {
@@ -31,31 +39,31 @@ const fadeUp = {
 };
 
 {/* Make better */}
-const features = [
+const cardData = [
   {
-    icon: "✔️",
+    icon: <CheckCircle size={48} color="#4caf50" />,
     title: "Fixed & Transparent Pricing",
-    description: "No surprises, no hidden fees",
+    subtitle: "No surprises, no hidden fees",
   },
   {
-    icon: "🚗",
+    icon: <Car size={48} color="#333" />,
     title: "Wide Fleet Options",
-    description: "Cars to suit every need",
+    subtitle: "Cars to suit every need",
   },
   {
-    icon: "🧑‍✈️",
+    icon: <User size={48} color="#333" />,
     title: "Verified Drivers",
-    description: "Professional and reliable",
+    subtitle: "Professional and reliable",
   },
   {
-    icon: "🛡️",
+    icon: <Shield size={48} color="#333" />,
     title: "Safety First",
-    description: "Your well-being, our priority",
+    subtitle: "Your well-being, our priority",
   },
   {
-    icon: "📱",
+    icon: <Smartphone size={48} color="#333" />,
     title: "24x7 App Support",
-    description: "Help when you need it",
+    subtitle: "Help when you need it",
   },
 ];
 
@@ -93,23 +101,88 @@ const steps = [
 ];
 
 
-const testimonials = [
+// Service Section
+
+const services = [
   {
-    name: 'Sarah Williams',
-    image: Profile1,
-    review: 'Very convenient and reliable service. Highly recommended!',
+    title: "City Rides",
+    description: "Quick and reliable rides within your city.",
+    icon: "🚕",
   },
   {
-    name: 'John Smith',
-    image: Profile2,
-    review: 'Drivers are punctual and friendly. Great experience every time.',
+    title: "Outstation",
+    description: "Travel to nearby towns with comfort and ease.",
+    icon: "🛣️",
   },
   {
-    name: 'Emily Johnson',
-    image: Profile3,
-    review: 'Easy to book and the car was very clean. Will use again.',
+    title: "Airport Transfers",
+    description: "On-time pickups and drops to all airports.",
+    icon: "✈️",
   },
 ];
+
+
+
+// Features 
+
+const features = [
+  {
+    icon: <CalendarCheck size={40} color="#fff" />,
+    title: "Instant Booking",
+    subtitle: "Book in seconds",
+    bgColor: "#3ed8ff",
+  },
+  {
+    icon: <AlertCircle size={40} color="#fff" />,
+    title: "Panic Button",
+    subtitle: "Emergency assistance",
+    bgColor: "#ffa69e",
+  },
+  {
+    icon: <Wallet size={40} color="#fff" />,
+    title: "Wallet Integration",
+    subtitle: "Pay seamlessly",
+    bgColor: "#fcd34d",
+  },
+  {
+    icon: <Star size={40} color="#fff" />,
+    title: "Driver Rating System",
+    subtitle: "Rate your experience",
+    bgColor: "#fbbf24",
+  },
+  {
+    icon: <QrCode size={40} color="#fff" />,
+    title: "QR Code Payments",
+    subtitle: "Simple and secure",
+    bgColor: "#86efac",
+  },
+  {
+  icon: <MapPin size={40} color="#fff" />,
+  title: "Live Ride Tracking",
+  subtitle: "Track your ride in real-time",
+  bgColor: "#c084fc",
+  },
+
+];
+
+
+// const testimonials = [
+//   {
+//     name: 'Sarah Williams',
+//     image: Profile1,
+//     review: 'Very convenient and reliable service. Highly recommended!',
+//   },
+//   {
+//     name: 'John Smith',
+//     image: Profile2,
+//     review: 'Drivers are punctual and friendly. Great experience every time.',
+//   },
+//   {
+//     name: 'Emily Johnson',
+//     image: Profile3,
+//     review: 'Easy to book and the car was very clean. Will use again.',
+//   },
+// ];
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -190,29 +263,25 @@ function Home(){
 
                 {/* Start How to work  */}
 
-                <div className="why-section">
-                  <br />
-                  <h2 className="section-title">Why Choose Us</h2>
-                  <br />
-                  <div className="card-container">
-                    {features.map((feature, index) => (
-                      <motion.div
-                        key={index}
-                        custom={index}
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true }}
-                        variants={cardVariants}
-                        className="feature-card"
-                        whileHover={{ scale: 1.05 }}
-                      >
-                        <div className="icon">{feature.icon}</div>
-                        <h3>{feature.title}</h3>
-                        <p>{feature.description}</p>
-                      </motion.div>
-                    ))}
+                <div className="why-choose-container">
+                    <h2 className="section-title">Why Choose Us</h2>
+                    <div className="cards-container">
+                      {cardData.map((card, index) => (
+                        <motion.div
+                          className="feature-card"
+                          key={index}
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          whileInView={{ opacity: 1, scale: 1 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.4, delay: index * 0.2 }}
+                        >
+                          <div className="icon">{card.icon}</div>
+                          <h3>{card.title}</h3>
+                          <p>{card.subtitle}</p>
+                        </motion.div>
+                      ))}
+                    </div>
                   </div>
-                </div>
                
 
                 {/* Ende of the work */}
@@ -248,67 +317,54 @@ function Home(){
                   <br />
                  
                 {/* Live feet */}
+
+
+                {/* Feature Section */}
+
+
+                <section className="top-features">
+                  <h2 className="section-title">Top Features</h2>
+                  <div className="features-grid">
+                    {features.map((feature, index) => (
+                      <motion.div
+                        key={index}
+                        className="feature-card"
+                        style={{ backgroundColor: feature.bgColor }}
+                        initial={{ opacity: 0, y: 40 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: index * 0.2 }}
+                        viewport={{ once: true }}
+                      >
+                        <div className="icon">{feature.icon}</div>
+                        <h3>{feature.title}</h3>
+                        <p>{feature.subtitle}</p>
+                      </motion.div>
+                    ))}
+                  </div>
+                </section>
                 
                 {/*Services Tags */}
                 {/* <Service /> */}.
-                <motion.div 
-                      className="container"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ duration: 0.8 }}
-                    >
-                
-                      <motion.div 
-                        className="services-container"
-                        initial={{ y: -50, opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
-                        transition={{ duration: 0.6 }}
+                <section className="home-services">
+                  <h2 className="home-services-title">Our Services</h2>
+                  <div className="services-grid">
+                    {services.map((service, index) => (
+                      <motion.div
+                        className="service-card"
+                        key={index}
+                        whileHover={{ scale: 1.05 }}
+                        initial={{ opacity: 0, y: 40 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: index * 0.2 }}
                       >
-                        <div className="p-3 justify-center align-center">
-                          <h1 className="text-center text-black text-5xl font-bold font-weight-3">
-                            🚖 Our Services
-                          </h1>
-                        </div>
-                        <br />
-                        <br />
-                
-                        <motion.div 
-                          className='image-store'
-                          initial={{ scale: 0.9, opacity: 0 }}
-                          animate={{ scale: 1, opacity: 1 }}
-                          transition={{ delay: 0.3 }}
-                        >
-                          <img src={Part4} className="picture" width={500} height={400} alt="image" />
-                          <div className='content'>
-                            {/* <h3 className=''>Chalo Saathi</h3> */}
-                            <h2>Your Daily Ride, Made Easy</h2>
-                            <p>Safe. Affordable. Comfortable. Always.
-
-                              Whether you're commuting to work, heading to college, shopping at the market, or returning home, we’ve got you covered with smooth and reliable rides—every single day.
-
-                              </p>
-                            <p>Fixed and transparent pricing .</p>
-                            <p>Verified & trained drivers .</p>
-                            <p>Real-time GPS tracking .</p>
-                            {/* <p>Professional and polite drivers</p> */}
-                            <StyledWrapper>
-                                <button className="animated-button">
-                                    
-                                    <svg viewBox="0 0 24 24" className="arr-2" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z" />
-                                    </svg>
-                                    <a href="Service" className='link'><span className="text">More Information</span> </a>
-                                    <span className="circle" />
-                                    <svg viewBox="0 0 24 24" className="arr-1" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z" />
-                                    </svg>
-                                   
-                                </button>
-                                </StyledWrapper>
-                          </div>
-                        </motion.div>
+                        <div className="service-icon">{service.icon}</div>
+                        <h3>{service.title}</h3>
+                        <p>{service.description}</p>
                       </motion.div>
-                    </motion.div>
+                    ))}
+                  </div>
+                  <Link to="/services" className="see-more-button">See All Services</Link>
+                </section>
                 {/*End of the Services*/} 
                 
                 
@@ -344,7 +400,7 @@ function Home(){
 
 
 
-                   <div className="testimonials-wrapper">
+                   {/* <div className="testimonials-wrapper">
                       <motion.h2
                         className="testimonials-title"
                         initial={{ opacity: 0, y: -30 }}
@@ -373,7 +429,7 @@ function Home(){
                           </motion.div>
                         ))}
                       </motion.div>
-                    </div>
+                    </div> */}
 
 
 

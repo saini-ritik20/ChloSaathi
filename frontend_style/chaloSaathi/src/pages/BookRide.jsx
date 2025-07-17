@@ -3,8 +3,17 @@ import { motion } from 'framer-motion';
 import './BookRide.css';
 import taxiImg from '../assets/taxiImg.png'; // Your taxi image path
 import ConfirmForm from './confirmationForm';
+import { useNavigate } from "react-router-dom";
 
-const HeroSection = () => {
+const BookRide = () => {
+  const navigate = useNavigate();
+
+  const handleRideNowClick = () => {
+    // Optionally, you can pass state here
+    navigate("/ConfirmForm");
+  };
+
+
   return (
     <div className="hero-container">
       <div className="cityscape-bg" />
@@ -53,4 +62,4 @@ const HeroSection = () => {
   );
 };
 
-export default HeroSection;
+export default BookRide;
