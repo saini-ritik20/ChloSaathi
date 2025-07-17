@@ -1,8 +1,8 @@
 
 import Service from './Service.jsx'
-import Profile1 from './assets/profile1.jpeg';
-import Profile2 from './assets/profile2.jpg';
-import Profile3 from './assets/profile3.avif';
+// import Profile1 from './assets/profile1.jpeg';
+// import Profile2 from './assets/profile2.jpg';
+// import Profile3 from './assets/profile3.avif';
 
 import car from "../assets/car.png";
 // import Part3 from "../assets/part3.png"
