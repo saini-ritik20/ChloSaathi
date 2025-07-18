@@ -10,7 +10,8 @@ import Part4 from "../assets/part4.jpg"
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 // import Contact from './Contact.jsx'
-
+import taxiMap from "../assets/taxi-map.png";
+import taxiIndiaMap from "../assets/about-india-taxi.png"
 import { CheckCircle, Car, User, Shield, Smartphone,CalendarCheck, AlertCircle, Wallet, Star, QrCode ,MapPin } from "lucide-react";
 
 
@@ -366,7 +367,73 @@ function Home(){
                   <Link to="/services" className="see-more-button">See All Services</Link>
                 </section>
                 {/*End of the Services*/} 
-                
+
+
+                {/* features */}
+                  <section className="about-section">
+                    <div className="about-content">
+                      <h2 className="about-heading">ABOUT <br />US</h2>
+                      <p>
+                        We are a modern, India-based taxi service built for seamless urban mobility.
+                        With a focus on transparent pricing, real-time tracking, and top-tier reliability,
+                        we’re changing how people move across cities.
+                      </p>
+                      <p>
+                        Our app ensures hassle-free bookings, 24/7 availability, and safe rides
+                        through trusted drivers. Whether you're headed to the airport or a quick city ride,
+                        we’ve got you covered!
+                      </p>
+                    </div>
+
+                    <div className="about-image-container">
+                      <img src={taxiIndiaMap} alt="India Taxi Map" className="about-image" />
+                    </div>
+                  </section>
+
+
+                {/* Second Last Section */}
+
+                <div className="hero-section">
+                    <div className="hero-left">
+                      <motion.h1
+                        className="hero-title"
+                        initial={{ y: -40, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{ duration: 0.6 }}
+                      >
+                        Your Ride,<br />On Time.<br />Every Time.
+                      </motion.h1>
+
+                      <motion.p
+                        className="hero-subtext"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.3 }}
+                      >
+                        Book a ride in minutes with our easy-to-use app.
+                      </motion.p>
+
+                      <motion.div
+                        className="hero-buttons"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.5 }}
+                      >
+                        <button className="btn-yellow">Book a Ride</button>
+                        <button className="btn-white">Download App</button>
+                      </motion.div>
+                    </div>
+
+                    <motion.div
+                      className="hero-right"
+                      initial={{ scale: 0.8, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ delay: 0.4 }}
+                    >
+                      <img src={taxiMap} alt="Taxi Map Illustration" className="hero-image" />
+                    </motion.div>
+                  </div>
+                            
                 
                 <br />
                 <br />

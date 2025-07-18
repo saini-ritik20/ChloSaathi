@@ -78,7 +78,7 @@ const ContactUs = () => {
         <motion.img
           src={conjusted}
           alt="Taxi"
-          className="taxi-image w-5 h-5"
+          className="taxi-image"
           initial={{ x: 100, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ delay: 0.7 }}
