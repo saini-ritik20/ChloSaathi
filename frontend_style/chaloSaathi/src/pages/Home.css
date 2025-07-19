@@ -419,8 +419,8 @@
   display: inline-block;
   margin-top: 20px;
   padding: 12px 24px;
-  background-color: #007bff;
-  color: white;
+  background-color: #eab308;
+  color: black;
   border-radius: 8px;
   text-decoration: none;
   font-weight: 500;
@@ -428,7 +428,8 @@
 }
 
 .see-more-button:hover {
-  background-color: #0056b3;
+  background-color: white;
+  color:#eab308;
 }
 
 

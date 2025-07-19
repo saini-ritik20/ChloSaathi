@@ -7,7 +7,7 @@ import Service from "./pages/Service";
 import Contact from "./pages/Contact";
 import BookRide from "./pages/BookRide";
 import Login from "./pages/Login";
-import ConfirmationForm from "./pages/confirmationForm";
+// import ConfirmationForm from "./pages/confirmationForm";
 
 
 
@@ -22,7 +22,7 @@ const router = createBrowserRouter([
       { path: '/Contact', element: <Contact /> },
       {path: '/BookRide',element:<BookRide/>},
       // {path: '/BookingForm',element:<BookingForm/>},
-      {path: '/ConfirmationForm',element:<ConfirmationForm/>},
+      // {path: '/ConfirmationForm',element:<ConfirmationForm/>},
 
 
       // { path: "*", element: <NotFound /> },

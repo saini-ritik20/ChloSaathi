@@ -368,6 +368,9 @@ function Home(){
                 </section>
                 {/*End of the Services*/} 
 
+                <br />
+                <br />
+                <br />
 
                 {/* features */}
                   <section className="about-section">
@@ -390,6 +393,9 @@ function Home(){
                     </div>
                   </section>
 
+
+                  <br />
+                  <br />
 
                 {/* Second Last Section */}
 
@@ -419,8 +425,10 @@ function Home(){
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.5 }}
                       >
-                        <button className="btn-yellow">Book a Ride</button>
-                        <button className="btn-white">Download App</button>
+                        {/* <button className="btn-yellow">Book a Ride</button> */}
+                        <Link to="/BookRide" className="btn-yellow no-underline">Book a Ride</Link>
+
+                        {/* <button className="btn-white">Download App</button> */}
                       </motion.div>
                     </div>
 
@@ -440,7 +448,7 @@ function Home(){
                 <br />
                 <br />
                 {/* ✅ Right Side: Text & Button Animation */}
-                    <motion.div
+                    {/* <motion.div
                         initial={{ opacity: 0, x: 80 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 1.2, ease: "easeOut", delay: 0.4 }}
@@ -452,16 +460,7 @@ function Home(){
                         <p className="text-gray-600 text-lg lg:text-xl mb-6">
                         At RideNow, we believe that every ride should start at the right place and head in the right direction — with zero confusion. That’s why our platform uses advanced GPS technology to detect your exact pickup location, even in busy streets or remote corners. With real-time tracking, you'll always know where your driver is and when they’ll arrive. From live route updates to clear driver details, RideNow offers a transparent and stress-free travel experience from the moment you book. Enjoy every ride with confidence, knowing you’re always in the right place at the right time. <span className="font-semibold text-yellow-500">RideNow</span> – your trusted travel companion.
                         </p>
-
-                        {/* <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        transition={{ type: "spring", stiffness: 300 }}
-                        className="px-6 py-3 bg-yellow-400 hover:bg-yellow-500 text-black font-semibold rounded-full shadow-lg transition-all duration-300"
-                        >
-                        🚕 Book a Ride Now
-                        </motion.button> */}
-                    </motion.div>
+                    </motion.div> */}
 
                    {/* New addition of the reviews  */}
 
