@@ -91,7 +91,7 @@ export default function AboutUs() {
         <p className="ready-subtitle">
           Book your taxi quickly and easily<br />with our convenient service.
         </p>
-        <button className="ride-button"></button>
+        <button className="ride-button">Go To Regsiter Page</button>
       </motion.section>
 
       {/* ── Footer ─────────────────────────────────────────── */}
