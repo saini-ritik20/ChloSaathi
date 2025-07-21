@@ -7,6 +7,7 @@ import Service from "./pages/Service";
 import Contact from "./pages/Contact";
 import BookRide from "./pages/BookRide";
 import Login from "./pages/Login";
+import SignIn from "./pages/SignIn";
 // import ConfirmationForm from "./pages/confirmationForm";
 
 
@@ -28,7 +29,8 @@ const router = createBrowserRouter([
       // { path: "*", element: <NotFound /> },
     ]
   },
-  { path: '/Login', element: <Login /> }
+  { path: '/Login', element: <Login /> },
+  {path:'/Register',element:<SignIn/>}
 ]);
 
 function App() {

@@ -1,8 +1,10 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Button from "../components/ui/Button"
-import { CheckCircle, MapPin, UserCheck, CreditCard,Clock,Sparkles,HelpCircle,Users,AlertTriangle,TrendingUp,Baby,Music,Leaf,Star,CalendarClock } from "lucide-react";
+import { CheckCircle, MapPin, UserCheck, CreditCard,Clock,Sparkles,HelpCircle,Users,AlertTriangle,TrendingUp,Baby,Music,Leaf,Star,CalendarClock, Link } from "lucide-react";
 import "./Service.css";
+// import { Link } from 'react-router-dom';
+import SignIn from './SignIn';
 
 const features = [
   {
@@ -112,7 +114,7 @@ const Service = () => {
         <motion.div className="service-cta" >
           <h4>Hop in. Sit back. Ride stress-free.</h4>
           <p>Your trusted travel partner is just a click away.</p>
-          <button className="service-btn">Sign Up Now</button>
+          <a href='Register' className='service-btn'>Sign Up Now</a>
         </motion.div>
       </div>
 

@@ -81,6 +81,19 @@ export default function AboutUs() {
         </div>
       </motion.section>
 
+      <motion.section
+        className="ready-section"
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: 'easeOut' }}
+      >
+        <h2 className="ready-title">Ready to Ride with Us?</h2>
+        <p className="ready-subtitle">
+          Book your taxi quickly and easily<br />with our convenient service.
+        </p>
+        <button className="ride-button"></button>
+      </motion.section>
+
       {/* ── Footer ─────────────────────────────────────────── */}
       {/* <footer className="footer">
         © {new Date().getFullYear()} ChaloSathi. All rights reserved.

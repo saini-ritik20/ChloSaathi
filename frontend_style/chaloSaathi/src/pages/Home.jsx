@@ -1,9 +1,5 @@
 
 import Service from './Service.jsx'
-// import Profile1 from '../assets/profile1.jpeg';
-// import Profile2 from '../assets/profile2.jpg';
-// import Profile3 from '../assets/profile3.avif';
-
 import car from "../assets/car.png";
 // import Part3 from "../assets/part3.png"
 import Part4 from "../assets/part4.jpg"
@@ -13,8 +9,6 @@ import { Link } from 'react-router-dom'
 import taxiMap from "../assets/taxi-map.png";
 import taxiIndiaMap from "../assets/about-india-taxi.png"
 import { CheckCircle, Car, User, Shield, Smartphone,CalendarCheck, AlertCircle, Wallet, Star, QrCode ,MapPin } from "lucide-react";
-
-
 import './Home.css';
 import { motion } from 'framer-motion';
 
@@ -166,24 +160,6 @@ const features = [
 
 ];
 
-
-// const testimonials = [
-//   {
-//     name: 'Sarah Williams',
-//     image: Profile1,
-//     review: 'Very convenient and reliable service. Highly recommended!',
-//   },
-//   {
-//     name: 'John Smith',
-//     image: Profile2,
-//     review: 'Drivers are punctual and friendly. Great experience every time.',
-//   },
-//   {
-//     name: 'Emily Johnson',
-//     image: Profile3,
-//     review: 'Easy to book and the car was very clean. Will use again.',
-//   },
-// ];
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -426,7 +402,7 @@ function Home(){
                         transition={{ delay: 0.5 }}
                       >
                         {/* <button className="btn-yellow">Book a Ride</button> */}
-                        <Link to="/BookRide" className="btn-yellow no-underline">Book a Ride</Link>
+                        <Link to="/BookRide" className="btn-yellow text-decoration-none">Book a Ride</Link>
 
                         {/* <button className="btn-white">Download App</button> */}
                       </motion.div>
@@ -448,56 +424,6 @@ function Home(){
                 <br />
                 <br />
                 {/* ✅ Right Side: Text & Button Animation */}
-                    {/* <motion.div
-                        initial={{ opacity: 0, x: 80 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 1.2, ease: "easeOut", delay: 0.4 }}
-                        className="max-w-xl text-center lg:text-left"
-                    >
-                        <h1 className="text-4xl lg:text-5xl font-bold text-gray-800 mb-4 leading-snug">
-                        <span className="text-yellow-500">"Your Ride,</span> Your Time,<br />Your Way."
-                        </h1>
-                        <p className="text-gray-600 text-lg lg:text-xl mb-6">
-                        At RideNow, we believe that every ride should start at the right place and head in the right direction — with zero confusion. That’s why our platform uses advanced GPS technology to detect your exact pickup location, even in busy streets or remote corners. With real-time tracking, you'll always know where your driver is and when they’ll arrive. From live route updates to clear driver details, RideNow offers a transparent and stress-free travel experience from the moment you book. Enjoy every ride with confidence, knowing you’re always in the right place at the right time. <span className="font-semibold text-yellow-500">RideNow</span> – your trusted travel companion.
-                        </p>
-                    </motion.div> */}
-
-                   {/* New addition of the reviews  */}
-
-
-
-                   {/* <div className="testimonials-wrapper">
-                      <motion.h2
-                        className="testimonials-title"
-                        initial={{ opacity: 0, y: -30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6 }}
-                      >
-                        What Our Customers Say
-                      </motion.h2>
-
-                      <motion.div
-                        className="testimonials-container"
-                        variants={containerVariants}
-                        initial="hidden"
-                        animate="show"
-                      >
-                        {testimonials.map((t, index) => (
-                          <motion.div className="testimonial-card" key={index} variants={cardVariants}>
-                            <img src={t.image} alt={t.name} className="testimonial-image" />
-                            <h3 className="testimonial-name">{t.name}</h3>
-                            <p className="testimonial-review">{t.review}</p>
-                            <div className="testimonial-stars">
-                              {'★★★★★'.split('').map((star, i) => (
-                                <span key={i} className="star">★</span>
-                              ))}
-                            </div>
-                          </motion.div>
-                        ))}
-                      </motion.div>
-                    </div> */}
-
-
 
                     {/* 🖼 Right Side - Image */}
                 <div className="flex flex-col lg:flex-row-reverse items-center justify-center px-8 py-16 bg-gray-50 gap-12 overflow-hidden">
@@ -522,7 +448,7 @@ function Home(){
                     transition={{ duration: 0.6, delay: 0.6 }}
                     className=" btn btn-outline-warning btn-lg px-5 py-3 fw-bold rounded-pill shadow-lg mt-3 "
                 >
-                    <a href='Contact' className='no-underline text-black hover:text-yellow-500 font-medium'>Connect With Us</a>
+                    <a href='Contact' className='text-decoration-none text-black hover:text-yellow-500 font-medium'>Connect With Us</a>
                 </motion.button>
                 </motion.div>
 
