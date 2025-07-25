@@ -132,7 +132,9 @@ STATIC_URL = 'static/'
 
 
 
-CORS_ALLOW_ALL_ORIGINS = True # Only for development
+CORS_ALLOW_ALL_ORIGINS = [
+    "http://localhost:5173",
+] # Only for development
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
