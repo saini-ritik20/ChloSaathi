@@ -35,6 +35,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     # 'corsheaders',
     # 'ChaloSaathi',
+    'taxiservice',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -132,9 +133,9 @@ STATIC_URL = 'static/'
 
 
 
-CORS_ALLOW_ALL_ORIGINS = [
-    "http://localhost:5173",
-] # Only for development
+# CORS_ALLOW_ALL_ORIGINS = [
+#     "http://localhost:5173",
+# ] # Only for development
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
