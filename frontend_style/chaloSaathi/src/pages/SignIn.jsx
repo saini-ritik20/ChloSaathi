@@ -25,11 +25,17 @@ const RegistrationForm = () => {
           <label>Phone Number</label>
           <input type="text" placeholder="0000000000" />
 
+          <label>Password</label>
+          <input type="password" placeholder="create your saftey" />
+
           <label>Area</label>
           <input type="text" placeholder="e.g., Mumbai Central" />
 
-          <label>Aadhar Verification</label>
-          <input type="file" />
+          <label>Aadhar Number</label>
+          <input type="text" placeholder="Enter Your Valid Aadhar Number" />
+
+          {/* <label>Aadhar Verification</label>
+          <input type="file" /> */}
 
           <button className="register-btn">Register as Customer</button>
         </motion.form>
@@ -44,17 +50,34 @@ const RegistrationForm = () => {
           <label>Phone Number</label>
           <input type="text" placeholder="0000000000" />
 
+          <label>Password</label>
+          <input type="password" placeholder="create your saftey" />
+
           <label>Area</label>
           <input type="text" placeholder="e.g., Delhi" />
 
-          <label>Aadhar Verification</label>
+          <label>Aadhar Number</label>
+          <input type="text" placeholder="Enter Your Valid Aadhar Number" />
+          <button className="btn">verify it</button>
+
+
+          <label>Driving License Number</label>
+          <input type="text" placeholder="Enter Your Valid Driving License Number" />
+          <button className="btn">verify it</button>
+
+
+          <label>Taxi Number</label>
+          <input type="text" placeholder="Enter Your Valid Taxi Number" />
+          <button className="btn">verify it</button>
+
+          {/* <label>Aadhar Verification</label>
           <input type="file" />
 
           <label>Driving License</label>
           <input type="file" />
 
           <label>Taxi Number Proof</label>
-          <input type="file" />
+          <input type="file" /> */}
 
           <label>Taxi Photo</label>
           <input type="file" />
