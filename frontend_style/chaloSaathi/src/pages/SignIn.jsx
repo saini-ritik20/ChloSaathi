@@ -33,6 +33,7 @@ const RegistrationForm = () => {
 
           <label>Aadhar Number</label>
           <input type="text" placeholder="Enter Your Valid Aadhar Number" />
+          <button className="btn-verify">verify it</button>
 
           {/* <label>Aadhar Verification</label>
           <input type="file" /> */}
@@ -58,17 +59,18 @@ const RegistrationForm = () => {
 
           <label>Aadhar Number</label>
           <input type="text" placeholder="Enter Your Valid Aadhar Number" />
-          <button className="btn">verify it</button>
+          <button className="btn-verify">verify it</button>
+          
 
 
           <label>Driving License Number</label>
           <input type="text" placeholder="Enter Your Valid Driving License Number" />
-          <button className="btn">verify it</button>
+          <button className="btn-verify">verify it</button>
 
 
           <label>Taxi Number</label>
           <input type="text" placeholder="Enter Your Valid Taxi Number" />
-          <button className="btn">verify it</button>
+          <button className="btn-verify">verify it</button>
 
           {/* <label>Aadhar Verification</label>
           <input type="file" />

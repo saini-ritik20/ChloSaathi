@@ -77,6 +77,21 @@ h1 {
   transition: background 0.3s ease;
 }
 
+.btn-verify{
+  margin-top: 10px;
+  padding: 6px;
+  width:100px;
+  background: #facc15;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+
+
 .register-btn:hover {
   background: #eab308;
 }
