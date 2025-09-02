@@ -33,9 +33,10 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    # 'corsheaders',
+    'corsheaders',
     # 'ChaloSaathi',
     'taxiService',
+    # 'django-cors-headers',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -45,7 +46,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    # 'corsheaders.middleware.CorsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -133,10 +134,16 @@ STATIC_URL = 'static/'
 
 
 
-# CORS_ALLOW_ALL_ORIGINS = [
-#     "http://localhost:5173",
-# ] # Only for development
+CORS_ALLOW_CREDENTIALS = True
 
+CORS_ALLOW_ORIGINS=[
+    "http://localhost:5173", 
+]
+
+# If you are using session auth or CSRF tokens
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:5173",
+]
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
