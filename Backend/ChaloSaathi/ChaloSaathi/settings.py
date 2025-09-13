@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'corsheaders',
     # 'ChaloSaathi',
     'taxiService',
+    'rest_framework',
     # 'django-cors-headers',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -149,3 +150,8 @@ CORS_ALLOW_ALL_ORIGINS = True
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+STATICFILES_DIRS = [ BASE_DIR.parent / 'frontend' / 'dist' ]
+TEMPLATES[0]['DIRS'] = [ BASE_DIR.parent / 'frontend' / 'dist' ]
+

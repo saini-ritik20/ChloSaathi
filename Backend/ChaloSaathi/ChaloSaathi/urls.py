@@ -18,12 +18,16 @@ from django.contrib import admin
 from django.urls import path
 from . import views
 from django.views.generic import TemplateView
+from taxiService.views import save_login
+
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("api/hello/", views.hello_world),
-    path('', TemplateView.as_view(template_name="index.html"), name='home'),
-    path('reports/', TemplateView.as_view(template_name="reports.html"), name='reports'),
+    path("api/hello/", views.hello),
+    # path('', TemplateView.as_view(template_name="index.html"), name='home'),
+    # path('reports/', TemplateView.as_view(template_name="reports.html"), name='reports'),
+    path('api/save-login/', save_login, name='save_login'),
+
 
 ]
