@@ -19,6 +19,8 @@ from django.urls import path
 from . import views
 from django.views.generic import TemplateView
 from taxiService.views import save_login
+from taxiService.views import contact_view
+
 
 
 
@@ -28,6 +30,5 @@ urlpatterns = [
     # path('', TemplateView.as_view(template_name="index.html"), name='home'),
     # path('reports/', TemplateView.as_view(template_name="reports.html"), name='reports'),
     path('api/save-login/', save_login, name='save_login'),
-
-
-]
+    path("api/contact/", contact_view, name="contact_view"),
+ ]
