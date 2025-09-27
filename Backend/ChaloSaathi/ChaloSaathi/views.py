@@ -1,4 +1,3 @@
-# taxiService/views.py
 from django.http import JsonResponse
 
 def hello(request):

@@ -2,7 +2,7 @@
 import Service from './Service.jsx'
 import car from "../assets/car.png";
 // import Part3 from "../assets/part3.png"
-import Part4 from "../assets/part4.jpg"
+// import Part4 from "../assets/part4.jpg"
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 // import Contact from './Contact.jsx'

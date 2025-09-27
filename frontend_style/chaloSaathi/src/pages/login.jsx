@@ -9,7 +9,7 @@ import appleLogo from "../assets/apple_logo.png";
 import logo from "../assets/logo.png";
 import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
-import DS from "./Dasboard.jsx";
+// import dashboard from "./Dasboard";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -27,7 +27,7 @@ function Login() {
 
       if (response.data.success) {
         localStorage.setItem("user", email);
-        navigate("/DS");
+        navigate("/dashboard");
       }
 
       alert(response.data.message);
@@ -53,23 +53,24 @@ function Login() {
       });
 
       // Normal login
-        if (response.data.success) {
-          localStorage.setItem("user", email);
-          navigate("/DS"); // ✅ redirect to root
-        }
+        // if (response.data.success) {
+        //   localStorage.setItem("user", email);
+        //   navigate("/dashboard"); // ✅ redirect to root
+        // }
 
         // Google login
         if (response.data.success) {
           localStorage.setItem("user", JSON.stringify(userInfo));
-          navigate("/DS"); // ✅ redirect to root
+          navigate("/dashboard"); // ✅ redirect to root
+            }
+        else {
+            alert("Google login failed on backend");
+          }
+        } 
+        catch (error) {
+          console.error("Google login error:", error);
+          alert("Google Login Failed!");
         }
-      else {
-        alert("Google login failed on backend");
-      }
-    } catch (error) {
-      console.error("Google login error:", error);
-      alert("Google Login Failed!");
-    }
   };
 
   return (
