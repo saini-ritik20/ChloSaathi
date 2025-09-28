@@ -9,69 +9,113 @@ import appleLogo from "../assets/apple_logo.png";
 import logo from "../assets/logo.png";
 import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
+import { useContext } from "react";
+import { AuthContext } from "../components/AuthContext";
+  import { useEffect } from "react";
+
 // import dashboard from "./Dasboard";
 
 function Login() {
+
+
+  const { user,login } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
+  
+
+  useEffect(() => {
+    if (user) {
+      navigate("/dashboard"); // redirect if already logged in
+    }
+  }, [user,navigate]);
+
   // Handle normal login form
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const response = await axios.post("http://127.0.0.1:8000/api/save-login/", {
-        username: email, // Django expects username field
-        password: password,
-      });
-
-      if (response.data.success) {
-        localStorage.setItem("user", email);
-        navigate("/dashboard");
-      }
-
-      alert(response.data.message);
-      setEmail("");
-      setPassword("");
-    } catch (error) {
-      console.error("Login error:", error);
-      alert("Error saving login data");
+    // Your login API call
+    const response = await axios.post("http://127.0.0.1:8000/api/save-login/", {
+      username: email,
+      password: password,
+    });
+    if (response.data.success) {
+      login({ username: email });
+      // no need to navigate here, effect will handle it
     }
   };
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     const response = await axios.post("http://127.0.0.1:8000/api/save-login/", {
+  //       username: email, // Django expects username field
+  //       password: password,
+  //     });
+
+  //     if (response.data.success) {
+  //       const userData = { username: email };
+  //       login(userData);
+  //       navigate("/dashboard");
+  //     }
+
+  //     alert(response.data.message);
+  //     setEmail("");
+  //     setPassword("");
+  //   } catch (error) {
+  //     console.error("Login error:", error);
+  //     alert("Error saving login data");
+  //   }
+  // };
 
   // Handle Google Login
+
   const handleGoogleSuccess = async (credentialResponse) => {
-    try {
-      const userInfo = jwtDecode(credentialResponse.credential);
-      console.log("Google User:", userInfo);
+    const userInfo = jwtDecode(credentialResponse.credential);
+    const response = await axios.post("http://127.0.0.1:8000/api/google-login/", {
+      token: credentialResponse.credential,
+      email: userInfo.email,
+      name: userInfo.name,
+    });
 
-      // ✅ Send Google token or email to Django backend for verification
-      const response = await axios.post("http://127.0.0.1:8000/api/google-login/", {
-        token: credentialResponse.credential,
-        email: userInfo.email,
-        name: userInfo.name,
-      });
-
-      // Normal login
-        // if (response.data.success) {
-        //   localStorage.setItem("user", email);
-        //   navigate("/dashboard"); // ✅ redirect to root
-        // }
-
-        // Google login
-        if (response.data.success) {
-          localStorage.setItem("user", JSON.stringify(userInfo));
-          navigate("/dashboard"); // ✅ redirect to root
-            }
-        else {
-            alert("Google login failed on backend");
-          }
-        } 
-        catch (error) {
-          console.error("Google login error:", error);
-          alert("Google Login Failed!");
-        }
+    if (response.data.success) {
+      login({ username: userInfo.name, email: userInfo.email });
+    }
   };
+//   const handleGoogleSuccess = async (credentialResponse) => {
+//     try {
+//       const userInfo = jwtDecode(credentialResponse.credential);
+//       console.log("Google User:", userInfo);
+
+//       // ✅ Send Google token or email to Django backend for verification
+//       const response = await axios.post("http://127.0.0.1:8000/api/google-login/", {
+//         token: credentialResponse.credential,
+//         email: userInfo.email,
+//         name: userInfo.name,
+//       });
+
+//       // Normal login
+//         // if (response.data.success) {
+//         //   localStorage.setItem("user", email);
+//         //   navigate("/dashboard"); // ✅ redirect to root
+//         // }
+
+//         // Google login
+//         if (response.data.success) {
+//             const userData = { username: userInfo.name, email: userInfo.email };
+//             login(userData);
+//             navigate("/dashboard");
+//  // ✅ redirect to root
+//             }
+//         else {
+//             alert("Google login failed on backend");
+//           }
+//         } 
+//         catch (error) {
+//           console.error("Google login error:", error);
+//           alert("Google Login Failed!");
+//         }
+//   };
 
   return (
     <LoginWrapper

@@ -11,13 +11,27 @@ import Login from "./pages/login";
 import SignIn from "./pages/SignIn";
 import Dashboard from "./pages/Dasboard";
 
+// make a component here 
+import { useContext } from "react";
+import { AuthContext } from "./components/AuthContext";
+import { Navigate } from "react-router-dom";
+
+const ProtectedRoute = ({ children }) => {
+  const { user } = useContext(AuthContext);
+  if (!user) return <Navigate to="/login" replace />;
+  return children; };
+
+
 function App() {
+  const { user } = useContext(AuthContext);
   const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 
-  // ✅ Check if user is logged in
-  const user = JSON.parse(localStorage.getItem("user"));
+
+  
 
   return (
+
+    
     <GoogleOAuthProvider clientId={clientId}>
       <Router>
         <Routes>
@@ -25,8 +39,13 @@ function App() {
           <Route path="/" element={<MainPage />}>
             {/* ✅ If user logged in → Dashboard, else → Home */}
             <Route index element={user ? <Dashboard /> : <Home />} />
+            <Route path="dashboard" element={
+                                      <ProtectedRoute>
+                                        <Dashboard />
+                                      </ProtectedRoute>
+                                    } />
 
-            <Route path="dashboard" element={<Dashboard />} />
+            {/* <Route path="dashboard" element={<Dashboard />} /> */}
             <Route path="about" element={<About />} />
             <Route path="services" element={<Service />} />
             <Route path="contact" element={<Contact />} />

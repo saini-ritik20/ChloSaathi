@@ -3,9 +3,12 @@ import { motion } from "framer-motion";
 import { Car, Wallet, CalendarCheck, Star, HelpCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import "./Dashboard.css";
+import { useContext } from "react";
+import { AuthContext } from "../components/AuthContext";
+
 
 export default function Dashboard() {
-  const user = JSON.parse(localStorage.getItem("user"));
+  const { user } = useContext(AuthContext);
 
   const stats = [
     { icon: <Car size={28} />, label: "Total Rides", value: "120+" },
