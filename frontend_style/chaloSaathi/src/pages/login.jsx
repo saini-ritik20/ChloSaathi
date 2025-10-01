@@ -18,6 +18,7 @@ import { AuthContext } from "../components/AuthContext";
 function Login() {
 
 
+  const [username, setUsername] = useState("");
   const { user,login } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -37,14 +38,22 @@ function Login() {
     e.preventDefault();
     // Your login API call
     const response = await axios.post("http://127.0.0.1:8000/api/save-login/", {
-      username: email,
-      password: password,
+      username,
+      email,
+      password,
     });
-    if (response.data.success) {
-      login({ username: email });
-      // no need to navigate here, effect will handle it
+
+    if (!response.data.success) {
+      alert(response.data.message);
+      return;
     }
+
+    login({ username, email });
+    navigate("/dashboard");
   };
+
+
+
   // const handleSubmit = async (e) => {
   //   e.preventDefault();
   //   try {
@@ -151,6 +160,16 @@ function Login() {
 
           {/* Normal login form */}
           <Form onSubmit={handleSubmit}>
+
+            <label>Username</label>
+            <input
+              type="text"
+              placeholder="Enter username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+
             <label>Email</label>
             <input
               type="email"

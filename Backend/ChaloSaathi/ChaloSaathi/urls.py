@@ -17,12 +17,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from . import views
-from taxiService.views import save_login, contact_view
+from taxiService.views import save_login, contact_view,customer_register,driver_register
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("api/hello/", views.hello),
     path("api/save-login/", save_login, name="save_login"),
     path("api/contact/", contact_view, name="contact_view"),
+    # Customer registration endpoint
+    path("api/register/", customer_register, name="customer_register"),
+
+    # Driver registration endpoint
+    path("api/driver/register/", driver_register, name="driver_register"),
 ]
 
