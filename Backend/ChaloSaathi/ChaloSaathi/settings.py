@@ -47,7 +47,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
+    "corsheaders.middleware.CorsMiddleware",  # ⚠️ Must be at the top, above CommonMiddleware
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -140,17 +140,32 @@ STATIC_URL = 'static/'
 #     "http://localhost:5173", 
 # ]
 
-CSRF_TRUSTED_ORIGINS = [
-    "http://localhost:5173",
-]
-
-
-CORS_ALLOW_ALL_ORIGINS = True
-
-# If you are using session auth or CSRF tokens
 # CSRF_TRUSTED_ORIGINS = [
 #     "http://localhost:5173",
 # ]
+
+
+# CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",  # your React frontend
+]
+
+
+CORS_ALLOW_CREDENTIALS = True 
+
+CORS_ALLOW_HEADERS = [
+    "content-type",
+    "authorization",
+    "x-csrftoken",
+    "accept",
+]
+
+
+
+# If you are using session auth or CSRF tokens
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:5173",
+]
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
@@ -167,5 +182,7 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = "vermaajay6799013@gmail.com"
 EMAIL_HOST_PASSWORD = "hnhg cdcw vyyu cdxn"  # Gmail App Password
+
+
 
 

@@ -16,10 +16,16 @@ import { useContext } from "react";
 import { AuthContext } from "./components/AuthContext";
 import { Navigate } from "react-router-dom";
 
+// const ProtectedRoute = ({ children }) => {
+//   const { user } = useContext(AuthContext);
+//   if (!user) return <Navigate to="/login" replace />;
+//   return children; };
+
 const ProtectedRoute = ({ children }) => {
   const { user } = useContext(AuthContext);
-  if (!user) return <Navigate to="/login" replace />;
-  return children; };
+  if (!user) return <Navigate to="/" replace />; // Redirect to home if not logged in
+  return children;
+};
 
 
 function App() {

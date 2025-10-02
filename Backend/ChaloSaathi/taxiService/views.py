@@ -3,39 +3,78 @@ from rest_framework.response import Response
 from rest_framework import status
 from .serializers import LoginSerializer,CustomerSerializer,DriverSerializer
 from django.core.mail import send_mail
-from .models import Contact, Login
+from .models import Contact, Login,Customer,Driver
+from django.views.decorators.csrf import csrf_exempt
+from django.db.models import Q 
+
+
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import status
+from .models import Login
+from django.db.models import Q
 from django.views.decorators.csrf import csrf_exempt
 
+from django.db.models import Q
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import status
+from .models import Customer, Driver
+from django.views.decorators.csrf import csrf_exempt
 
 @csrf_exempt
-@api_view(["GET", "POST"])
+@api_view(["POST"])
 def save_login(request):
-    if request.method == "GET":
-        return Response({"message": "Login endpoint is working"}, status=200)
-
-    # ✅ Extract username & password
-    username = request.data.get("username")
+    username_or_email = request.data.get("username")  # frontend can send email
     password = request.data.get("password")
 
-    # ✅ Check if both fields exist
-    if not username or not password:
+    if not username_or_email or not password:
         return Response(
-            {"success": False, "message": "Username and password required"},
-            status=status.HTTP_400_BAD_REQUEST,
+            {"success": False, "message": "Username/email and password required"},
+            status=status.HTTP_400_BAD_REQUEST
         )
 
-    # ✅ Check if the user exists in the database
-    try:
-        user = Login.objects.get(username=username, password=password)
+    # Check in Customer table
+    customer = Customer.objects.filter(
+        Q(email=username_or_email) | Q(full_name=username_or_email),
+        password=password
+    ).first()
+    if customer:
         return Response(
-            {"success": True, "message": "Login successful"}, 
+            {
+                "success": True,
+                "message": "Customer login successful",
+                "username": customer.full_name,
+                "email": customer.email,
+                "role": "customer"
+            },
             status=status.HTTP_200_OK
         )
-    except Login.DoesNotExist:
+
+    # Check in Driver table
+    driver = Driver.objects.filter(
+        Q(email=username_or_email) | Q(full_name=username_or_email),
+        password=password
+    ).first()
+    if driver:
         return Response(
-            {"success": False, "message": "Invalid credentials"},
-            status=status.HTTP_401_UNAUTHORIZED
+            {
+                "success": True,
+                "message": "Driver login successful",
+                "username": driver.full_name,
+                "email": driver.email,
+                "role": "driver"
+            },
+            status=status.HTTP_200_OK
         )
+
+    # If not found
+    return Response(
+        {"success": False, "message": "Invalid credentials or user not registered"},
+        status=status.HTTP_401_UNAUTHORIZED
+    )
+
+
 
 
 @csrf_exempt
@@ -88,3 +127,57 @@ def driver_register(request):
         serializer.save()
         return Response({"success": True, "message": "Driver registered successfully"}, status=status.HTTP_201_CREATED)
     return Response({"success": False, "errors": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+
+
+import json
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.utils import timezone
+from .models import Login
+from google.oauth2 import id_token
+from google.auth.transport import requests as google_requests
+
+GOOGLE_CLIENT_ID = "916481483985-uam47pjqe5glagrm8lo7lfuio82snbif.apps.googleusercontent.com"  # replace this
+
+@csrf_exempt
+@api_view(["POST"])
+def google_login(request):
+    if request.method == "POST":
+        try:
+            body = json.loads(request.body.decode("utf-8"))
+            token = body.get("credential")
+
+            if not token:
+                return JsonResponse({"success": False, "message": "No token provided"}, status=400)
+
+            # ✅ Verify token
+            idinfo = id_token.verify_oauth2_token(
+                token,
+                google_requests.Request(),
+                GOOGLE_CLIENT_ID
+            )
+
+            email = idinfo.get("email")
+            name = idinfo.get("name", "")
+            google_id = idinfo.get("sub")
+
+            # ✅ Create or get user
+            user, created = Login.objects.get_or_create(
+                email=email,
+                defaults={
+                    "username": name,
+                    "password": "",
+                }
+            )
+
+            return JsonResponse({
+                "success": True,
+                "username": user.username,
+                "email": user.email,
+            })
+
+        except Exception as e:
+            return JsonResponse({"success": False, "message": str(e)}, status=500)
+
+    return JsonResponse({"success": False, "message": "Invalid request"}, status=405)
+

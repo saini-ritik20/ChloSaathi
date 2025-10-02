@@ -16,12 +16,11 @@ import { AuthContext } from "../components/AuthContext";
 // import dashboard from "./Dasboard";
 
 function Login() {
-
-
+  const { user, login, logout } = useContext(AuthContext);
   const [username, setUsername] = useState("");
-  const { user,login } = useContext(AuthContext);
-  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [email, setEmail] = useState(""); // add this at the top
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   
@@ -34,99 +33,85 @@ function Login() {
 
   // Handle normal login form
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    // Your login API call
-    const response = await axios.post("http://127.0.0.1:8000/api/save-login/", {
-      username,
-      email,
-      password,
-    });
-
-    if (!response.data.success) {
-      alert(response.data.message);
-      return;
-    }
-
-    login({ username, email });
-    navigate("/dashboard");
-  };
-
-
-
   // const handleSubmit = async (e) => {
   //   e.preventDefault();
-  //   try {
-  //     const response = await axios.post("http://127.0.0.1:8000/api/save-login/", {
-  //       username: email, // Django expects username field
-  //       password: password,
-  //     });
+  //   // Your login API call
+    
 
-  //     if (response.data.success) {
-  //       const userData = { username: email };
-  //       login(userData);
-  //       navigate("/dashboard");
-  //     }
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  try {
+    const res = await axios.post(
+      "http://127.0.0.1:8000/api/save-login/",
+      { username: email || username, password }, // send either email or username
+      { withCredentials: true }
+    );
 
-  //     alert(response.data.message);
-  //     setEmail("");
-  //     setPassword("");
-  //   } catch (error) {
-  //     console.error("Login error:", error);
-  //     alert("Error saving login data");
+    if (res.data.success) {
+      console.log("Login successful:", res.data);
+      setError("");
+      login({
+        username: res.data.username,
+        email: res.data.email,
+        role: res.data.role,
+      });
+      navigate("/dashboard");
+    } else {
+      setError(res.data.message);
+    }
+  } catch (err) {
+    if (err.response) {
+      setError(err.response.data.message);
+    } else {
+      setError("Network error, please try again.");
+    }
+  }
+};
+
+
+
+  //   const response = await axios.post("http://127.0.0.1:8000/api/save-login/", {
+  //     username,
+  //     email,
+  //     password,
+  //   });
+
+  //   if (!response.data.success) {
+  //     alert(response.data.message || "Invalid Login");
+  //     return;
   //   }
+
+  //   login({ username, email });
+  //   navigate("/dashboard");
   // };
 
-  // Handle Google Login
-
-  const handleGoogleSuccess = async (credentialResponse) => {
-    const userInfo = jwtDecode(credentialResponse.credential);
-    const response = await axios.post("http://127.0.0.1:8000/api/google-login/", {
-      token: credentialResponse.credential,
-      email: userInfo.email,
-      name: userInfo.name,
-    });
+  const handleGoogleLogin = async (credentialResponse) => {
+  try {
+    const response = await axios.post(
+      "http://127.0.0.1:8000/api/google-login/",
+      {
+        credential: credentialResponse.credential,
+      }
+    );
 
     if (response.data.success) {
-      login({ username: userInfo.name, email: userInfo.email });
+      login({
+        username: response.data.username,
+        email: response.data.email,
+      });
+      navigate("/dashboard");
+    } else {
+      alert("Google login failed");
     }
-  };
-//   const handleGoogleSuccess = async (credentialResponse) => {
-//     try {
-//       const userInfo = jwtDecode(credentialResponse.credential);
-//       console.log("Google User:", userInfo);
+  } catch (error) {
+    console.error("Google login failed:", error);
+  }
+};
 
-//       // ✅ Send Google token or email to Django backend for verification
-//       const response = await axios.post("http://127.0.0.1:8000/api/google-login/", {
-//         token: credentialResponse.credential,
-//         email: userInfo.email,
-//         name: userInfo.name,
-//       });
-
-//       // Normal login
-//         // if (response.data.success) {
-//         //   localStorage.setItem("user", email);
-//         //   navigate("/dashboard"); // ✅ redirect to root
-//         // }
-
-//         // Google login
-//         if (response.data.success) {
-//             const userData = { username: userInfo.name, email: userInfo.email };
-//             login(userData);
-//             navigate("/dashboard");
-//  // ✅ redirect to root
-//             }
-//         else {
-//             alert("Google login failed on backend");
-//           }
-//         } 
-//         catch (error) {
-//           console.error("Google login error:", error);
-//           alert("Google Login Failed!");
-//         }
-//   };
 
   return (
+
+    
     <LoginWrapper
       as={motion.div}
       initial={{ opacity: 0 }}
@@ -158,6 +143,35 @@ function Login() {
             Get started with our app, just create an account and enjoy the experience.
           </p>
 
+          
+          {/* Logout button if already logged in */}
+          {user && (
+            <motion.div style={{ marginBottom: "20px" }}>
+              <p>Logged in as: {user.username}</p>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                style={{
+                  background: "#f44336",
+                  color: "white",
+                  border: "none",
+                  padding: "8px 16px",
+                  borderRadius: "6px",
+                  cursor: "pointer"
+                }}
+                onClick={() => {
+                  logout();
+                  setUsername("");
+                  setEmail("");
+                  setPassword("");
+                  setError("");
+                }}
+              >
+                Logout
+              </motion.button>
+            </motion.div>
+          )}
+          {error && <p style={{ color: "red" }}>{error}</p>}
           {/* Normal login form */}
           <Form onSubmit={handleSubmit}>
 
@@ -217,7 +231,7 @@ function Login() {
 
             {/* ✅ Google Login */}
             <GoogleLogin
-              onSuccess={handleGoogleSuccess}
+              onSuccess={handleGoogleLogin}
               onError={() => {
                 alert("Google Login Failed!");
               }}

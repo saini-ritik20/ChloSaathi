@@ -4,12 +4,20 @@ import { Car, Wallet, CalendarCheck, Star, HelpCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import "./Dashboard.css";
 import { useContext } from "react";
+// import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../components/AuthContext";
 
 
 export default function Dashboard() {
-  const { user } = useContext(AuthContext);
+const { user, logout } = useContext(AuthContext); // ✅ get logout
+  const navigate = useNavigate(); // ✅ for redirection
 
+  // ✅ Define the function here inside the component
+  const handleLogout = () => {
+    logout();            // clear the user from context and localStorage
+    navigate("/");  // redirect to login page
+  };
   const stats = [
     { icon: <Car size={28} />, label: "Total Rides", value: "120+" },
     { icon: <Wallet size={28} />, label: "Wallet Balance", value: "₹850" },
@@ -26,6 +34,15 @@ export default function Dashboard() {
 
   return (
     <div className="dashboard-container">
+      {/* Logout button at top-right */}
+      <motion.button
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        className="logout-btn"
+        onClick={handleLogout}
+      >
+        Logout
+      </motion.button>
       {/* Greeting */}
       <motion.h1
         className="dashboard-title"
