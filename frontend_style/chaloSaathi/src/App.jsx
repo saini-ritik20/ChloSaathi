@@ -31,6 +31,7 @@ const ProtectedRoute = ({ children }) => {
 function App() {
   const { user } = useContext(AuthContext);
   const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+  
 
 
   
@@ -41,22 +42,26 @@ function App() {
     <GoogleOAuthProvider clientId={clientId}>
       <Router>
         <Routes>
-          {/* Public/Protected Main Routes */}
+      {
+        user ? (
+          // ✅ If logged in → Show ONLY Dashboard (no MainPage, no Navbar)
+          <Route path="/*" element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          } />
+        ) : (
+    // ✅ If NOT logged in → Show normal website with navbar
           <Route path="/" element={<MainPage />}>
-            {/* ✅ If user logged in → Dashboard, else → Home */}
-            <Route index element={user ? <Dashboard /> : <Home />} />
-            <Route path="dashboard" element={
-                                      <ProtectedRoute>
-                                        <Dashboard />
-                                      </ProtectedRoute>
-                                    } />
-
-            {/* <Route path="dashboard" element={<Dashboard />} /> */}
+            <Route index element={<Home />} />
             <Route path="about" element={<About />} />
             <Route path="services" element={<Service />} />
             <Route path="contact" element={<Contact />} />
             <Route path="bookride" element={<BookRide />} />
           </Route>
+        )
+      }
+
 
           {/* Auth Routes */}
           <Route path="/login" element={<Login />} />
