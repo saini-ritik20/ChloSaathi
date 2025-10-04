@@ -1,4 +1,4 @@
-/* === Service Section === */
+
 
 .service-wrapper {
   min-height: 100vh;
@@ -16,19 +16,19 @@
 .service-title {
   font-size: 2.25rem;
   font-weight: bold;
-  color: #1f2937; /* gray-900 */
+  color: #1f2937; 
   margin-bottom: 0.5rem;
 }
 
 .service-subtitle {
   font-size: 1.25rem;
   font-weight: 600;
-  color: #2563eb; /* blue-600 */
+  color: #2563eb; 
 }
 
 .service-description {
   margin-top: 1rem;
-  color: #374151; /* gray-700 */
+  color: #374151; 
   max-width: 42rem;
   margin-left: auto;
   margin-right: auto;
@@ -65,7 +65,7 @@
 
 .feature-card {
   background-color: white;
-  border: 1px solid #e5e7eb; /* gray-200 */
+  border: 1px solid #e5e7eb; 
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   border-radius: 1rem;
   padding: 1.5rem;
@@ -93,10 +93,10 @@
 
 .feature-card-description {
   font-size: 0.875rem;
-  color: #4b5563; /* gray-600 */
+  color: #4b5563; 
 }
 
-/* CTA */
+
 .service-cta {
   text-align: center;
   margin-top: 4rem;

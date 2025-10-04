@@ -15,7 +15,10 @@ import {
 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Dashboard.css";
+import RideMatch from "./RideMatch";
+
 import { AuthContext } from "../components/AuthContext";
+
 
 export default function Dashboard() {
   const { user: authUser, logout } = useContext(AuthContext);
@@ -31,7 +34,7 @@ export default function Dashboard() {
 
   // Load saved profile from localStorage on mount
   useEffect(() => {
-    const saved = JSON.parse(localStorage.getItem("saathi_profile") || "null");
+    const saved = JSON.parse(localStorage.getItem("saathi_profile_${authUser.id}") || "null");
     if (saved) setUser((p) => ({ ...p, ...saved }));
     else setUser((p) => ({ ...p, username: authUser?.username || "Saathi", email: authUser?.email || "" }));
   }, [authUser]);
@@ -64,7 +67,7 @@ export default function Dashboard() {
   ];
 
   const actions = [
-    { label: "Book Ride", path: "/BookRide", className: "action-yellow" },
+    { label: "Book Ride", path: "/ride-match", className: "action-yellow" },
     { label: "My Rides", path: "/my-rides", className: "action-outline" },
     { label: "Wallet", path: "/wallet", className: "action-yellow-strong" },
     { label: "Support", path: "/support", className: "action-muted" },
@@ -72,9 +75,11 @@ export default function Dashboard() {
 
   // Handlers
   const handleLogout = () => {
-    logout?.();
-    navigate("/");
-  };
+  // localStorage.removeItem("saathi_profile"); // <-- clear previous profile
+  logout?.();
+  navigate("/");
+};
+
 
   const handleFileChange = (e) => {
     const file = e.target.files?.[0];

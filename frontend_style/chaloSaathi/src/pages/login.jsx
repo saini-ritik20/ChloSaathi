@@ -587,7 +587,6 @@ const LoginWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #0b0d10 url(${bgImage}) no-repeat center center/cover;
   min-height: 100vh;
   padding: 40px 20px;
 `;

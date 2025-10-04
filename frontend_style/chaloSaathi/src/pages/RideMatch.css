@@ -1,0 +1,77 @@
+.ride-match-realtime {
+  padding: 20px;
+  font-family: 'Poppins', sans-serif;
+  color: #e6eef6;
+  background: #0b0d10;
+  min-height: 100vh;
+}
+
+h2, h3 { color: #ffc107; }
+
+.ride-location input {
+  width: 300px;
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,193,7,0.2);
+  background: rgba(255,255,255,0.02);
+  color: #fff;
+}
+
+.drivers-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.driver-card {
+  background: rgba(255,255,255,0.02);
+  padding: 14px;
+  border-radius: 12px;
+  min-width: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid rgba(255,255,255,0.03);
+  transition: transform 0.2s ease;
+}
+.driver-card:hover { transform: scale(1.03); }
+
+.driver-card.available { border: 1px solid #2ecc71; }
+.driver-card.booked { border: 1px solid #ffc107; opacity: 0.9; }
+.driver-card.unavailable { border: 1px solid #e74c3c; opacity: 0.7; }
+
+.driver-btn {
+  margin-top: 6px;
+  padding: 6px 12px;
+  background: linear-gradient(90deg, #ffc107, #f2b500);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+  color: #111;
+}
+
+.ride-status.booked { color: #ffc107; font-weight: 700; }
+.ride-status.unavailable { color: #e74c3c; font-weight: 700; }
+
+.ride-map {
+  margin: 20px 0;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.03);
+  background: rgba(255,255,255,0.02);
+  text-align: center;
+  color: #fff;
+}
+
+.map-placeholder {
+  margin-top: 8px;
+  height: 150px;
+  border: 1px dashed rgba(255,255,255,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.3);
+}

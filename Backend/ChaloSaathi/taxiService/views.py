@@ -129,6 +129,17 @@ def driver_register(request):
     return Response({"success": False, "errors": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
 
 
+@api_view(["GET"])
+def available_drivers(request):
+    area = request.GET.get("area", "").lower()
+    if not area:
+        return Response({"drivers": []}, status=200)
+
+    # Filter drivers by area (case-insensitive)
+    drivers = Drivers.objects.filter(area__icontains=area, status="available")  # status field optional
+    serializer = DriverSerializer(drivers, many=True)
+    return Response({"drivers": serializer.data}, status=200)
+
 import json
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
