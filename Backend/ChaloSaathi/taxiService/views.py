@@ -133,12 +133,14 @@ def driver_register(request):
 def available_drivers(request):
     area = request.GET.get("area", "").lower()
     if not area:
-        return Response({"drivers": []}, status=200)
+        return Response([], status=200)  # Return empty list
 
-    # Filter drivers by area (case-insensitive)
-    drivers = Drivers.objects.filter(area__icontains=area, status="available")  # status field optional
+    # ✅ Correct model name & filter logic
+    drivers = Driver.objects.filter(area__icontains=area)
+
     serializer = DriverSerializer(drivers, many=True)
-    return Response({"drivers": serializer.data}, status=200)
+    return Response(serializer.data, status=200)  # ✅ Return list, not {"drivers": [...]}
+
 
 import json
 from django.http import JsonResponse

@@ -6,7 +6,8 @@ export default function DriverCard({ driver, rideBooked, onBook }) {
     <div className={`driver-card ${driver.status}`}>
       <div className="driver-info">
         <h4>{driver.name}</h4>
-        <p>Status: {driver.status.toUpperCase()}</p>
+        <p>Status: {(driver.status || "").toUpperCase()
+}</p>
         {driver.distance && <p>Distance: {driver.distance} km</p>}
       </div>
 

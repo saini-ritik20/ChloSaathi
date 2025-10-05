@@ -34,6 +34,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'corsheaders',
+    "channels",
     # 'ChaloSaathi',
     'taxiService',
     'rest_framework',
@@ -76,7 +77,16 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'ChaloSaathi.wsgi.application'
+ASGI_APPLICATION = "ChaloSaathi.asgi.application"  # replace with your project module name
 
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("127.0.0.1", 6379)],
+        },
+    },
+}
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
