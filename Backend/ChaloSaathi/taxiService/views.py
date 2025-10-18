@@ -117,16 +117,31 @@ def customer_register(request):
 
 
 # ✅ Driver Registration
-@csrf_exempt
-@api_view(["GET","POST"])
+# @csrf_exempt
+# @api_view(["GET","POST"])
+# def driver_register(request):
+#     if request.method == "GET":
+#         return Response({"message": "Driver endpoint is working"}, status=status.HTTP_200_OK)
+#     serializer = DriverSerializer(data=request.data)
+#     if serializer.is_valid():
+#         serializer.save()
+#         return Response({"success": True, "message": "Driver registered successfully"}, status=status.HTTP_201_CREATED)
+#     return Response({"success": False, "errors": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+@api_view(["GET", "POST"])
 def driver_register(request):
     if request.method == "GET":
         return Response({"message": "Driver endpoint is working"}, status=status.HTTP_200_OK)
+
     serializer = DriverSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
-        return Response({"success": True, "message": "Driver registered successfully"}, status=status.HTTP_201_CREATED)
-    return Response({"success": False, "errors": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+        return Response(
+            {"success": True, "message": "Driver registered successfully"},
+            status=status.HTTP_201_CREATED
+        )
+    else:
+        print("❌ Serializer errors:", serializer.errors)  # 👈 Add this line
+        return Response({"success": False, "errors": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(["GET"])
