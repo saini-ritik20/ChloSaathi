@@ -117,7 +117,6 @@ def customer_register(request):
 
 
 # ✅ Driver Registration
-# @csrf_exempt
 # @api_view(["GET","POST"])
 # def driver_register(request):
 #     if request.method == "GET":
@@ -127,21 +126,24 @@ def customer_register(request):
 #         serializer.save()
 #         return Response({"success": True, "message": "Driver registered successfully"}, status=status.HTTP_201_CREATED)
 #     return Response({"success": False, "errors": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
-@api_view(["GET", "POST"])
+@csrf_exempt
+@api_view(["POST"])
 def driver_register(request):
-    if request.method == "GET":
-        return Response({"message": "Driver endpoint is working"}, status=status.HTTP_200_OK)
+    # if request.method == "GET":
+    #     return Response({"message": "Driver endpoint is working"}, status=200)
 
     serializer = DriverSerializer(data=request.data)
     if serializer.is_valid():
-        serializer.save()
-        return Response(
-            {"success": True, "message": "Driver registered successfully"},
-            status=status.HTTP_201_CREATED
-        )
+        try:
+            serializer.save()
+            return Response({"success": True, "message": "Driver registered successfully"}, status=201)
+        except Exception as e:
+            # Catch database-level errors (like unique constraint)
+            return Response({"success": False, "message": str(e)}, status=400)
     else:
-        print("❌ Serializer errors:", serializer.errors)  # 👈 Add this line
-        return Response({"success": False, "errors": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+        return Response({"success": False, "errors": serializer.errors}, status=400)
+
+
 
 
 @api_view(["GET"])
@@ -157,55 +159,54 @@ def available_drivers(request):
     return Response(serializer.data, status=200)  # ✅ Return list, not {"drivers": [...]}
 
 
-import json
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from django.utils import timezone
-from .models import Login
-from google.oauth2 import id_token
-from google.auth.transport import requests as google_requests
+# import json
+# from django.http import JsonResponse
+# from django.views.decorators.csrf import csrf_exempt
+# from django.utils import timezone
+# from .models import Login
 
-GOOGLE_CLIENT_ID = "916481483985-uam47pjqe5glagrm8lo7lfuio82snbif.apps.googleusercontent.com"  # replace this
 
-@csrf_exempt
-@api_view(["POST"])
-def google_login(request):
-    if request.method == "POST":
-        try:
-            body = json.loads(request.body.decode("utf-8"))
-            token = body.get("credential")
+# GOOGLE_CLIENT_ID = "916481483985-uam47pjqe5glagrm8lo7lfuio82snbif.apps.googleusercontent.com"  # replace this
 
-            if not token:
-                return JsonResponse({"success": False, "message": "No token provided"}, status=400)
+# @csrf_exempt
+# @api_view(["POST"])
+# def google_login(request):
+#     if request.method == "POST":
+#         try:
+#             body = json.loads(request.body.decode("utf-8"))
+#             token = body.get("credential")
 
-            # ✅ Verify token
-            idinfo = id_token.verify_oauth2_token(
-                token,
-                google_requests.Request(),
-                GOOGLE_CLIENT_ID
-            )
+#             if not token:
+#                 return JsonResponse({"success": False, "message": "No token provided"}, status=400)
 
-            email = idinfo.get("email")
-            name = idinfo.get("name", "")
-            google_id = idinfo.get("sub")
+#             # ✅ Verify token
+#             idinfo = id_token.verify_oauth2_token(
+#                 token,
+#                 google_requests.Request(),
+#                 GOOGLE_CLIENT_ID
+#             )
 
-            # ✅ Create or get user
-            user, created = Login.objects.get_or_create(
-                email=email,
-                defaults={
-                    "username": name,
-                    "password": "",
-                }
-            )
+#             email = idinfo.get("email")
+#             name = idinfo.get("name", "")
+#             google_id = idinfo.get("sub")
 
-            return JsonResponse({
-                "success": True,
-                "username": user.username,
-                "email": user.email,
-            })
+#             # ✅ Create or get user
+#             user, created = Login.objects.get_or_create(
+#                 email=email,
+#                 defaults={
+#                     "username": name,
+#                     "password": "",
+#                 }
+#             )
 
-        except Exception as e:
-            return JsonResponse({"success": False, "message": str(e)}, status=500)
+#             return JsonResponse({
+#                 "success": True,
+#                 "username": user.username,
+#                 "email": user.email,
+#             })
 
-    return JsonResponse({"success": False, "message": "Invalid request"}, status=405)
+#         except Exception as e:
+#             return JsonResponse({"success": False, "message": str(e)}, status=500)
+
+#     return JsonResponse({"success": False, "message": "Invalid request"}, status=405)
 
