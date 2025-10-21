@@ -126,22 +126,80 @@ def customer_register(request):
 #         serializer.save()
 #         return Response({"success": True, "message": "Driver registered successfully"}, status=status.HTTP_201_CREATED)
 #     return Response({"success": False, "errors": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
-@csrf_exempt
-@api_view(["POST"])
-def driver_register(request):
-    # if request.method == "GET":
-    #     return Response({"message": "Driver endpoint is working"}, status=200)
+# @csrf_exempt
+# @api_view(["POST", "GET"])
+# def driver_register(request):
+#     if request.method == "GET":
+#         drivers = Driver.objects.all()
+#         serializer = DriverSerializer(drivers, many=True)
+#         return Response(serializer.data, status=200)
+    
+#     # POST: register driver
+#     serializer = DriverSerializer(data=request.data)
+#     if serializer.is_valid():
+#         serializer.save()
+#         return Response({"success": True, "message": "Driver registered successfully"}, status=201)
+#     return Response({"success": False, "errors": serializer.errors}, status=400)
 
+from django.db import IntegrityError
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import status
+from .serializers import DriverSerializer
+from .models import Driver
+from django.views.decorators.csrf import csrf_exempt
+import traceback
+
+@csrf_exempt
+@api_view(["GET", "POST"])
+def driver_register(request):
+    if request.method == "GET":
+        # Return all drivers
+        drivers = Driver.objects.all()
+        serializer = DriverSerializer(drivers, many=True)
+        return Response({
+            "success": True,
+            "drivers": serializer.data
+        }, status=200)
+
+    # POST: register driver
     serializer = DriverSerializer(data=request.data)
     if serializer.is_valid():
         try:
             serializer.save()
-            return Response({"success": True, "message": "Driver registered successfully"}, status=201)
+            return Response({
+                "success": True,
+                "message": "Driver registered successfully"
+            }, status=201)
+
+        except IntegrityError as e:
+            # Catch duplicate fields like email, aadhar, license_number, vehicle_number
+            return Response({
+                "success": False,
+                "message": "Duplicate entry detected. Please check email, aadhar, license number, or vehicle number.",
+                "details": str(e)
+            }, status=400)
+
         except Exception as e:
-            # Catch database-level errors (like unique constraint)
-            return Response({"success": False, "message": str(e)}, status=400)
-    else:
-        return Response({"success": False, "errors": serializer.errors}, status=400)
+            # Any other error
+            traceback.print_exc()  # prints full error in console
+            return Response({
+                "success": False,
+                "message": "Server error occurred",
+                "details": str(e)
+            }, status=500)
+
+    # Validation errors
+    return Response({
+        "success": False,
+        "message": "Validation failed",
+        "errors": serializer.errors
+    }, status=400)
+
+
+
+
+
 
 
 

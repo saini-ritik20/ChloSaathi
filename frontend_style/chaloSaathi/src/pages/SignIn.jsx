@@ -46,6 +46,7 @@ const RegistrationForm = () => {
 
   const handleDriverRegister = async (e) => {
   e.preventDefault();
+
   try {
     const formData = new FormData();
     formData.append("full_name", full_name);
@@ -69,26 +70,36 @@ const RegistrationForm = () => {
       alert("Driver registration successful! You can now log in.");
       navigate("/login");
     } else {
-      // Show detailed error messages from backend
-      console.error(response.data);
-      alert(
-        "Driver registration failed:\n" +
-          (response.data.message || JSON.stringify(response.data.errors))
-      );
+      // Handle detailed backend errors
+      console.error("Driver registration error:", response.data);
+      const msg =
+        response.data.message ||
+        (response.data.errors
+          ? Object.values(response.data.errors)
+              .flat()
+              .join("\n")
+          : "Unknown error");
+      alert("Driver registration failed:\n" + msg);
     }
   } catch (error) {
     console.error("Error registering driver:", error);
+
+    // Axios error response
     if (error.response && error.response.data) {
-      alert(
-        "Server error:\n" +
-          (error.response.data.message ||
-            JSON.stringify(error.response.data.errors))
-      );
+      const msg =
+        error.response.data.message ||
+        (error.response.data.errors
+          ? Object.values(error.response.data.errors)
+              .flat()
+              .join("\n")
+          : "Unknown server error");
+      alert("Server error:\n" + msg);
     } else {
       alert("Unexpected error while registering driver.");
     }
   }
 };
+
 
 
   return (
