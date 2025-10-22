@@ -150,30 +150,31 @@ from .models import Driver
 from django.views.decorators.csrf import csrf_exempt
 import traceback
 
+import traceback
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+from django.views.decorators.csrf import csrf_exempt
+from django.db import IntegrityError, transaction
+
 @csrf_exempt
 @api_view(["GET", "POST"])
 def driver_register(request):
     if request.method == "GET":
-        # Return all drivers
         drivers = Driver.objects.all()
         serializer = DriverSerializer(drivers, many=True)
-        return Response({
-            "success": True,
-            "drivers": serializer.data
-        }, status=200)
+        return Response({"success": True, "drivers": serializer.data}, status=200)
 
-    # POST: register driver
     serializer = DriverSerializer(data=request.data)
     if serializer.is_valid():
         try:
-            serializer.save()
-            return Response({
-                "success": True,
-                "message": "Driver registered successfully"
-            }, status=201)
+            print("✅ Valid serializer, saving driver...")
+            with transaction.atomic():
+                serializer.save()
+            print("✅ Driver saved successfully")
+            return Response({"success": True, "message": "Driver registered successfully"}, status=201)
 
         except IntegrityError as e:
-            # Catch duplicate fields like email, aadhar, license_number, vehicle_number
+            print("⚠️ Integrity Error:", e)
             return Response({
                 "success": False,
                 "message": "Duplicate entry detected. Please check email, aadhar, license number, or vehicle number.",
@@ -181,21 +182,20 @@ def driver_register(request):
             }, status=400)
 
         except Exception as e:
-            # Any other error
-            traceback.print_exc()  # prints full error in console
+            print("🔥 Unexpected Error:")
+            traceback.print_exc()
             return Response({
                 "success": False,
                 "message": "Server error occurred",
                 "details": str(e)
             }, status=500)
 
-    # Validation errors
+    print("❌ Validation failed:", serializer.errors)
     return Response({
         "success": False,
         "message": "Validation failed",
         "errors": serializer.errors
     }, status=400)
-
 
 
 
