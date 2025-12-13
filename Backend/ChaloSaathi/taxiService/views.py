@@ -268,3 +268,17 @@ def available_drivers(request):
 
 #     return JsonResponse({"success": False, "message": "Invalid request"}, status=405)
 
+
+from asgiref.sync import async_to_sync
+from channels.layers import get_channel_layer
+
+def driver_online(area, driver_data):
+    channel_layer = get_channel_layer()
+    async_to_sync(channel_layer.group_send)(
+        f"drivers_area_{area}",
+        {
+            "type": "driver_update",
+            "payload": driver_data
+        }
+    )
+
