@@ -16,3 +16,24 @@ class DriverAreaConsumer(AsyncWebsocketConsumer):
     # Receive message from group
     async def driver_update(self, event):
         await self.send(text_data=json.dumps(event["payload"]))
+
+
+class RideSearchConsumer(AsyncWebsocketConsumer):
+    async def connect(self):
+        self.search_id = self.scope["url_route"]["kwargs"]["search_id"]
+        self.group_name = f"ride_search_{self.search_id}"
+
+        await self.channel_layer.group_add(
+            self.group_name,
+            self.channel_name
+        )
+        await self.accept()
+
+    async def disconnect(self, close_code):
+        await self.channel_layer.group_discard(
+            self.group_name,
+            self.channel_name
+        )
+
+    async def driver_update(self, event):
+        await self.send(text_data=json.dumps(event["payload"]))

@@ -282,3 +282,42 @@ def driver_online(area, driver_data):
         }
     )
 
+
+import json, uuid
+from geopy.distance import geodesic
+from .models import Driver
+from .utils_ws import send_driver_to_search
+
+@csrf_exempt
+@api_view(["POST"])
+def start_ride_search(request):
+    """
+    Called when customer clicks SEARCH
+    """
+    data = request.data
+    pickup = data.get("pickup")
+    destination = data.get("destination")
+
+    if not pickup or not destination:
+        return Response(
+            {"error": "Pickup and destination required"},
+            status=status.HTTP_400_BAD_REQUEST
+        )
+
+    search_id = str(uuid.uuid4())
+
+    pickup_loc = (pickup["lat"], pickup["lng"])
+
+    drivers = Driver.objects.filter(status="available")
+
+    for driver in drivers:
+        driver_loc = (driver.lat, driver.lng)
+        distance = geodesic(pickup_loc, driver_loc).km
+
+        if distance <= 5:  # 5 km radius
+            send_driver_to_search(search_id, driver, distance)
+
+    return Response(
+        {"search_id": search_id},
+        status=status.HTTP_200_OK
+    )
