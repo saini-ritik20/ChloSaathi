@@ -91,6 +91,7 @@ import Login from "./pages/login";
 import SignIn from "./pages/SignIn";
 import Dashboard from "./pages/Dasboard";
 import RideMatchRealtime from "./pages/RideMatch";
+import DriverRide from "./pages/DriverRide";
 
 import { useContext } from "react";
 import { AuthContext } from "./components/AuthContext";
@@ -111,6 +112,7 @@ function App() {
     <GoogleOAuthProvider clientId={clientId}>
       <Router>
         <Routes>
+          <Route path="/driver" element={<DriverRide />} />
           {/* Authenticated Users */}
           {user ? (
             <>
@@ -140,6 +142,7 @@ function App() {
                 <Route path="services" element={<Service />} />
                 <Route path="contact" element={<Contact />} />
                 <Route path="bookride" element={<BookRide />} />
+                {/* <Route path="driverride" element={<DriverRide />} /> */}
               </Route>
             </>
           )}

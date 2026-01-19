@@ -5,12 +5,14 @@ import { getDistanceFromLatLonInKm } from "../utils/distance";
 import axios from "axios";
 import "./RideMatch.css";
 
-const BASE_URL = "http://127.0.0.1:8000"; // make sure your backend runs here
-const WS_URL = "ws://127.0.0.1:8000"; // WebSocket server
+
+const BASE_URL = "http://127.0.0.1:8000";
+const WS_URL = "ws://127.0.0.1:8000";
 
 export default function RideMatchRealtime() {
   const [drivers, setDrivers] = useState([]);
   const [pickupLocation, setPickupLocation] = useState(null);
+  const [pickupInput, setPickupInput] = useState("");
   const [customerDestination, setCustomerDestination] = useState("");
   const [rideBooked, setRideBooked] = useState(false);
   const [rideConfirmed, setRideConfirmed] = useState(false);
@@ -57,7 +59,9 @@ export default function RideMatchRealtime() {
       wsRef.current = null;
     }
 
-    const ws = new WebSocket(`${WS_URL}/ws/drivers/${encodeURIComponent(searchArea.toLowerCase())}/`);
+    const ws = new WebSocket(
+      `${WS_URL}/ws/drivers/${encodeURIComponent(searchArea.toLowerCase())}/`
+    );
     wsRef.current = ws;
 
     ws.onopen = () => console.log("✅ WebSocket connected:", searchArea);
@@ -80,7 +84,9 @@ export default function RideMatchRealtime() {
             area: driver.area,
           });
         }
-      } catch (err) { console.error("❌ WS parse error", err); }
+      } catch (err) {
+        console.error("❌ WS parse error", err);
+      }
     };
 
     ws.onclose = () => console.log("⚠️ WebSocket closed for:", searchArea);
@@ -88,28 +94,38 @@ export default function RideMatchRealtime() {
 
     fetchDrivers(searchArea);
 
-    return () => { if (wsRef.current) wsRef.current.close(); };
+    return () => {
+      if (wsRef.current) wsRef.current.close();
+    };
   }, [searchArea]);
 
-  // ---------- PICKUP LOCATION ----------
+  // ---------- PICKUP INPUT ----------
   const handlePickupChange = (e) => {
-    const area = e.target.value; // do not trim spaces
-    setSearchArea(area);
-    const locations = {
-      kanpur: { lat: 26.4499, lng: 80.3319 },
-      lucknow: { lat: 26.8467, lng: 80.9462 },
-    };
-    const loc = locations[area.toLowerCase()] || locations.kanpur;
-    setPickupLocation({ ...loc, name: area });
+    setPickupInput(e.target.value);
   };
 
   // ---------- CUSTOMER REQUEST ----------
   const handleCustomerRequest = () => {
-    if (!pickupLocation || !customerDestination) return;
+    if (!pickupInput || !customerDestination) return;
+
+    const area = pickupInput.trim();
+    setSearchArea(area);
+
+    const locations = {
+      kanpur: { lat: 26.4499, lng: 80.3319 },
+      lucknow: { lat: 26.8467, lng: 80.9462 },
+    };
+
+    const loc = locations[area.toLowerCase()] || locations.kanpur;
+    setPickupLocation({ ...loc, name: area });
 
     const sortedDrivers = [...drivers].sort((a, b) => {
-      const distA = getDistanceFromLatLonInKm(pickupLocation.lat, pickupLocation.lng, a.lat, a.lng);
-      const distB = getDistanceFromLatLonInKm(pickupLocation.lat, pickupLocation.lng, b.lat, b.lng);
+      const distA = getDistanceFromLatLonInKm(
+        loc.lat, loc.lng, a.lat, a.lng
+      );
+      const distB = getDistanceFromLatLonInKm(
+        loc.lat, loc.lng, b.lat, b.lng
+      );
       return distA - distB;
     });
 
@@ -120,7 +136,7 @@ export default function RideMatchRealtime() {
 
     axios.post(`${BASE_URL}/api/assign-ride/`, {
       driver_id: closestDriver.id,
-      pickup: pickupLocation,
+      pickup: { ...loc, name: area },
       destination: customerDestination,
     }).catch(err => console.error("Error assigning ride:", err));
   };
@@ -130,7 +146,9 @@ export default function RideMatchRealtime() {
     setRideConfirmed(true);
     setRideBooked(true);
     setDrivers((prev) =>
-      prev.map((d) => d.id === driverId ? { ...d, status: "booked" } : d)
+      prev.map((d) =>
+        d.id === driverId ? { ...d, status: "booked" } : d
+      )
     );
 
     axios.post(`${BASE_URL}/api/ride-confirmed/`, {
@@ -142,13 +160,22 @@ export default function RideMatchRealtime() {
 
   const handleBookRide = (driverId) => {
     setDrivers((prev) =>
-      prev.map((d) => d.id === driverId ? { ...d, status: "booked" } : { ...d, status: "unavailable" })
+      prev.map((d) =>
+        d.id === driverId
+          ? { ...d, status: "booked" }
+          : { ...d, status: "unavailable" }
+      )
     );
     setRideBooked(true);
   };
 
   const handleDriverSearchCustomers = () => {
-    console.log("Driver searching route:", driverCurrentLocation, "→", driverDestination);
+    console.log(
+      "Driver searching route:",
+      driverCurrentLocation,
+      "→",
+      driverDestination
+    );
     setShowDriverForm(false);
   };
 
@@ -157,9 +184,10 @@ export default function RideMatchRealtime() {
   const calculateFare = () => {
     if (!pickupLocation || !customerDestination || !assignedDriver) return 0;
     const dist = getDistanceFromLatLonInKm(
-      pickupLocation.lat, pickupLocation.lng,
-      customerDestination.lat || pickupLocation.lat,
-      customerDestination.lng || pickupLocation.lng
+      pickupLocation.lat,
+      pickupLocation.lng,
+      pickupLocation.lat,
+      pickupLocation.lng
     );
     return (dist * 10).toFixed(2);
   };
@@ -168,13 +196,12 @@ export default function RideMatchRealtime() {
     <div className="ride-match-realtime">
       <h2>🚗 Request a Ride</h2>
 
-      {/* CUSTOMER FORM */}
       {!showDriverForm && !rideBooked && (
         <div className="customer-form-overlay">
           <input
             type="text"
             placeholder="Enter pickup location..."
-            value={pickupLocation?.name || searchArea}
+            value={pickupInput}
             onChange={handlePickupChange}
           />
           <input
@@ -183,18 +210,26 @@ export default function RideMatchRealtime() {
             value={customerDestination}
             onChange={(e) => setCustomerDestination(e.target.value)}
           />
-          <button className="search-ride-btn" onClick={handleCustomerRequest}>🔍 Find Ride</button>
+          <button
+            className="search-ride-btn"
+            onClick={handleCustomerRequest}
+          >
+            🔍 Find Ride
+          </button>
         </div>
       )}
 
-      {/* DRIVER MODE BUTTON */}
       <div className="driver-mode-trigger">
-        <button className="driver-mode-btn" onClick={() => setShowDriverForm(true)}>
+        <button
+          className="driver-mode-btn"
+          onClick={() => {
+            window.open(`${window.location.origin}/driver`, "_blank");
+          }}
+        >
           I am a Driver – Share My Route
         </button>
       </div>
 
-      {/* MAP */}
       {!showDriverForm && (
         <RideMap
           drivers={drivers}
@@ -205,12 +240,16 @@ export default function RideMatchRealtime() {
         />
       )}
 
-      {/* DRIVER LIST */}
       <h3>Nearby Drivers</h3>
       <div className="drivers-list">
         {drivers.map((driver) => {
           const distance = pickupLocation
-            ? getDistanceFromLatLonInKm(pickupLocation.lat, pickupLocation.lng, driver.lat, driver.lng)
+            ? getDistanceFromLatLonInKm(
+                pickupLocation.lat,
+                pickupLocation.lng,
+                driver.lat,
+                driver.lng
+              )
             : null;
 
           return (
@@ -223,56 +262,14 @@ export default function RideMatchRealtime() {
                   ? handleDriverConfirm(driver.id)
                   : handleBookRide(driver.id)
               }
-              showConfirm={assignedDriver?.id === driver.id && !rideConfirmed}
+              showConfirm={
+                assignedDriver?.id === driver.id && !rideConfirmed
+              }
             />
           );
         })}
       </div>
 
-      {/* DRIVER FORM OVERLAY */}
-      {showDriverForm && (
-        <div className="driver-form-overlay">
-          <div className="driver-form-card">
-            <div className="driver-form-header">
-              <div className="driver-form-title">
-                <h3>Share Your Route</h3>
-                <span>We’ll find riders going your way</span>
-              </div>
-              <button className="driver-form-close" onClick={handleCloseDriverForm}>×</button>
-            </div>
-
-            <div className="driver-form-body">
-              <div className="driver-field">
-                <div className="driver-field-label">📍 Current Location</div>
-                <input
-                  type="text"
-                  placeholder="e.g., Kakadeo, Kanpur"
-                  value={driverCurrentLocation}
-                  onChange={(e) => setDriverCurrentLocation(e.target.value)}
-                />
-              </div>
-
-              <div className="driver-field">
-                <div className="driver-field-label">🎯 Destination</div>
-                <input
-                  type="text"
-                  placeholder="e.g., CSA University"
-                  value={driverDestination}
-                  onChange={(e) => setDriverDestination(e.target.value)}
-                />
-              </div>
-            </div>
-
-            <div className="driver-form-footer">
-              <button className="driver-search-btn" onClick={handleDriverSearchCustomers}>
-                Search Customers
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* RIDE CONFIRMATION */}
       {rideConfirmed && assignedDriver && (
         <div className="ride-confirmation">
           ✅ Ride confirmed with {assignedDriver.name}!
@@ -283,4 +280,3 @@ export default function RideMatchRealtime() {
     </div>
   );
 }
-

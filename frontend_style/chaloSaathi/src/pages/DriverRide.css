@@ -1,0 +1,157 @@
+.driver-wrapper {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #0f0f0f, #1a1a1a);
+  padding: 20px;
+  color: #fff;
+  font-family: "Inter", system-ui;
+}
+
+/* TOP BAR */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.top-bar h1 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.top-bar span {
+  font-size: 12px;
+  color: #aaa;
+}
+
+/* ONLINE STATUS */
+.online-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(0, 255, 127, 0.12);
+  font-size: 12px;
+  font-weight: 600;
+  color: #00ff7f;
+}
+
+.pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #00ff7f;
+  box-shadow: 0 0 8px #00ff7f;
+}
+
+/* RIDE CONTAINER */
+.rides-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* CARD */
+.ride-box {
+  background: #ffffff;
+  color: #111;
+  border-radius: 22px;
+  padding: 18px;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+}
+
+/* LOCATIONS */
+.location-block {
+  margin-bottom: 16px;
+}
+
+.loc-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.loc-row p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.pickup-dot,
+.drop-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.pickup-dot {
+  background: #00c853;
+}
+
+.drop-dot {
+  background: #d50000;
+}
+
+.route-line {
+  height: 16px;
+  margin-left: 4px;
+  border-left: 2px dashed #ccc;
+}
+
+/* INFO */
+.ride-info {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.ride-info span {
+  display: block;
+  font-size: 11px;
+  color: #777;
+}
+
+.ride-info strong {
+  font-size: 14px;
+}
+
+.fare {
+  color: #000;
+  font-weight: 700;
+}
+
+/* ACTIONS */
+.action-row {
+  display: flex;
+  gap: 12px;
+}
+
+.accept,
+.decline {
+  flex: 1;
+  padding: 14px;
+  border-radius: 16px;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.accept {
+  background: #000;
+  color: #fff;
+}
+
+.decline {
+  background: #f2f2f2;
+  color: #333;
+}
+
+/* EMPTY */
+.no-rides {
+  text-align: center;
+  padding: 40px 0;
+  color: #aaa;
+}
