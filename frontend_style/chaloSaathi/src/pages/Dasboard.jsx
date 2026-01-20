@@ -1,4 +1,5 @@
 
+
 import React, { useContext, useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
@@ -15,16 +16,18 @@ import {
 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Dashboard.css";
-import RideMatch from "./RideMatch";
 
 import { AuthContext } from "../components/AuthContext";
-
 
 export default function Dashboard() {
   const { user: authUser, logout } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  // LOCAL profile state (mirrors authUser when available)
+  // ✅ ROLE CHECK (NEW)
+  const isDriver =
+    authUser?.role === "driver" || authUser?.is_driver === true;
+
+  // LOCAL profile state
   const [user, setUser] = useState({
     username: authUser?.username || "",
     email: authUser?.email || "",
@@ -32,14 +35,19 @@ export default function Dashboard() {
     photo: null,
   });
 
-  // Load saved profile from localStorage on mount
   useEffect(() => {
-    const saved = JSON.parse(localStorage.getItem("saathi_profile_${authUser.id}") || "null");
+    const saved = JSON.parse(
+      localStorage.getItem(`saathi_profile_${authUser?.id}`) || "null"
+    );
     if (saved) setUser((p) => ({ ...p, ...saved }));
-    else setUser((p) => ({ ...p, username: authUser?.username || "Saathi", email: authUser?.email || "" }));
+    else
+      setUser((p) => ({
+        ...p,
+        username: authUser?.username || "Saathi",
+        email: authUser?.email || "",
+      }));
   }, [authUser]);
 
-  // Avatar preview
   const [avatarPreview, setAvatarPreview] = useState(user.photo || null);
   useEffect(() => {
     setAvatarPreview(user.photo || null);
@@ -49,7 +57,6 @@ export default function Dashboard() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [editing, setEditing] = useState(false);
 
-  // Profile completion: fields filled count
   const completionScore = () => {
     let score = 0;
     if (user.username) score += 25;
@@ -66,20 +73,22 @@ export default function Dashboard() {
     { icon: <CalendarCheck size={20} />, label: "Upcoming", value: "2" },
   ];
 
+  // ✅ UPDATED ACTIONS (ROLE BASED)
   const actions = [
-    { label: "Book Ride", path: "/ride-match", className: "action-yellow" },
+    {
+      label: isDriver ? "Go Online" : "Book Ride",
+      path: isDriver ? "/driverride" : "/ride-match",
+      className: "action-yellow",
+    },
     { label: "My Rides", path: "/my-rides", className: "action-outline" },
     { label: "Wallet", path: "/wallet", className: "action-yellow-strong" },
     { label: "Support", path: "/support", className: "action-muted" },
   ];
 
-  // Handlers
   const handleLogout = () => {
-  // localStorage.removeItem("saathi_profile"); // <-- clear previous profile
-  logout?.();
-  navigate("/");
-};
-
+    logout?.();
+    navigate("/");
+  };
 
   const handleFileChange = (e) => {
     const file = e.target.files?.[0];
@@ -87,7 +96,10 @@ export default function Dashboard() {
     const reader = new FileReader();
     reader.onload = () => {
       setUser((u) => ({ ...u, photo: reader.result }));
-      localStorage.setItem("saathi_profile", JSON.stringify({ ...user, photo: reader.result }));
+      localStorage.setItem(
+        `saathi_profile_${authUser?.id}`,
+        JSON.stringify({ ...user, photo: reader.result })
+      );
     };
     reader.readAsDataURL(file);
   };
@@ -97,13 +109,21 @@ export default function Dashboard() {
   };
 
   const handleSaveProfile = () => {
-    localStorage.setItem("saathi_profile", JSON.stringify(user));
+    localStorage.setItem(
+      `saathi_profile_${authUser?.id}`,
+      JSON.stringify(user)
+    );
     setEditing(false);
   };
 
   const handleResetProfile = () => {
-    localStorage.removeItem("saathi_profile");
-    setUser({ username: authUser?.username || "Saathi", email: authUser?.email || "", phone: "", photo: null });
+    localStorage.removeItem(`saathi_profile_${authUser?.id}`);
+    setUser({
+      username: authUser?.username || "Saathi",
+      email: authUser?.email || "",
+      phone: "",
+      photo: null,
+    });
     setEditing(false);
   };
 

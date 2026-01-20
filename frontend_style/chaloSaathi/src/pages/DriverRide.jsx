@@ -1,108 +1,52 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./DriverRide.css";
 
+const WS_URL = "ws://127.0.0.1:8000/ws/ride-search/global/";
+
 export default function DriverRide() {
-  const [isOnline] = useState(true);
+  const [rides, setRides] = useState([]);
 
-  const [requests, setRequests] = useState([
-    {
-      id: 1,
-      pickup: "Kakadeo, Kanpur",
-      destination: "CSA University",
-      distance: "3.2 km",
-      time: "8 mins",
-      fare: "₹120"
-    },
-    {
-      id: 2,
-      pickup: "Govind Nagar",
-      destination: "Rawatpur",
-      distance: "5.6 km",
-      time: "14 mins",
-      fare: "₹210"
-    }
-  ]);
+  useEffect(() => {
+    const ws = new WebSocket(WS_URL);
 
-  const handleAccept = (id) => {
-    alert("Ride Accepted");
-    setRequests((prev) => prev.filter((r) => r.id !== id));
-  };
+    ws.onmessage = (e) => {
+      const data = JSON.parse(e.data);
+      setRides((prev) => [data, ...prev]);
+    };
 
-  const handleReject = (id) => {
-    setRequests((prev) => prev.filter((r) => r.id !== id));
-  };
+    ws.onerror = () => console.log("WebSocket error");
+
+    return () => ws.close();
+  }, []);
 
   return (
-    <div className="driver-wrapper">
-      {/* TOP BAR */}
-      <div className="top-bar">
-        <div>
-          <h1>Driver</h1>
-          <span>Ride Requests</span>
-        </div>
+    <div className="driver-ride-page">
+      <header className="driver-header">
+        <h2>🚘 Driver Dashboard</h2>
+        <span className="online">ONLINE</span>
+      </header>
 
-        <div className={`online-pill ${isOnline ? "active" : ""}`}>
-          <span className="pulse" />
-          Online
-        </div>
-      </div>
-
-      {/* CARDS */}
-      <div className="rides-container">
-        {requests.length === 0 ? (
-          <div className="no-rides">
-            <h3>No Requests</h3>
-            <p>Waiting for nearby passengers</p>
-          </div>
-        ) : (
-          requests.map((ride) => (
-            <div className="ride-box" key={ride.id}>
-              <div className="location-block">
-                <div className="loc-row">
-                  <div className="pickup-dot" />
-                  <p>{ride.pickup}</p>
-                </div>
-
-                <div className="route-line" />
-
-                <div className="loc-row">
-                  <div className="drop-dot" />
-                  <p>{ride.destination}</p>
-                </div>
-              </div>
-
-              <div className="ride-info">
-                <div>
-                  <span>Distance</span>
-                  <strong>{ride.distance}</strong>
-                </div>
-                <div>
-                  <span>ETA</span>
-                  <strong>{ride.time}</strong>
-                </div>
-                <div>
-                  <span>Fare</span>
-                  <strong className="fare">{ride.fare}</strong>
-                </div>
-              </div>
-
-              <div className="action-row">
-                <button
-                  className="decline"
-                  onClick={() => handleReject(ride.id)}
-                >
-                  Decline
-                </button>
-                <button
-                  className="accept"
-                  onClick={() => handleAccept(ride.id)}
-                >
-                  Accept Ride
-                </button>
-              </div>
-            </div>
-          ))
+      <div className="ride-list">
+        {rides.length === 0 && (
+          <p className="no-rides">Waiting for ride requests...</p>
         )}
+
+        {rides.map((ride, index) => (
+          <div className="ride-card" key={index}>
+            <div className="ride-locations">
+              <p><strong>Pickup:</strong> {ride.pickup}</p>
+              <p><strong>Drop:</strong> {ride.destination}</p>
+            </div>
+
+            <div className="ride-meta">
+              <span>📍 {ride.distance} km</span>
+              <span>⏱ {ride.time} min</span>
+              <span>💰 ₹{ride.fare}</span>
+            </div>
+
+            <button className="accept-btn">Accept Ride</button>
+          </div>
+        ))}
       </div>
     </div>
   );

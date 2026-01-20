@@ -32,6 +32,9 @@ urlpatterns = [
 
     path("available-drivers/", available_drivers,name="avalible_drivers"),  # new endpoint
 
+    path("api/start-ride-search/", views.start_ride_search, name="start_ride_search"),
+
+
     # path("api/google_login/", google_login,name="google_login"),
 
 ]
