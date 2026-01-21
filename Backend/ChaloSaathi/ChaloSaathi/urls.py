@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from . import views
-from taxiService.views import save_login, contact_view,customer_register,driver_register,available_drivers
+from taxiService.views import save_login, contact_view,customer_register,driver_register,available_drivers,start_ride_search
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -32,7 +32,7 @@ urlpatterns = [
 
     path("available-drivers/", available_drivers,name="avalible_drivers"),  # new endpoint
 
-    path("api/start-ride-search/", views.start_ride_search, name="start_ride_search"),
+    path("api/start-ride-search/", start_ride_search, name="start_ride_search"),
 
 
     # path("api/google_login/", google_login,name="google_login"),
